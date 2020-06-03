@@ -1,5 +1,3 @@
-use strict';
-
 var Realm = require('realm'); 
 
 // the URL to the Realm Object Server
