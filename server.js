@@ -1,4 +1,12 @@
-var Realm = require('realm'); 
+const Realm = require('realm'); 
+const express = require('express')
+const app = express()
+ 
+app.get('/', function (req, res) {
+  res.send('Hello World')
+})
+ 
+app.listen(3000)
 
 // the URL to the Realm Object Server
 var SERVER_URL = '//clarity-forms-development.us2a.cloud.realm.io';
@@ -34,5 +42,7 @@ async function main() {
 		}
 
 }
+
+
 
 main()
