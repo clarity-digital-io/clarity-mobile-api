@@ -26,7 +26,7 @@ var handleChange = async function (changeEvent) {
 async function main() {
 
 		try {
-			const adminUser = await Realm.Sync.User.login(`https:${SERVER_URL}`, Realm.Sync.Credentials.usernamePassword('real-admin', 'Random2000!'));
+			const adminUser = await Realm.Sync.User.login(`https:${SERVER_URL}`, Realm.Sync.Credentials.custom('crm', '', { username: 'real-admin', password: 'Random2000!'} ));
 			Realm.Sync.addListener(`realms:${SERVER_URL}`, adminUser, NOTIFIER_PATH, 'change', handleChange);
 		} catch (error) {
 			console.log('error', error);
