@@ -27,6 +27,7 @@ async function main() {
 
 		try {
 			const adminUser = await Realm.Sync.User.login(`https:${SERVER_URL}`, Realm.Sync.Credentials.nickname('realm-admin', true));
+			console.log('adminUser', adminUser); 
 			Realm.Sync.addListener(`realms:${SERVER_URL}`, adminUser, NOTIFIER_PATH, 'change', handleChange);
 		} catch (error) {
 			console.log('error', error);
