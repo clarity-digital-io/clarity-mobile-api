@@ -8,9 +8,6 @@ var SERVER_URL = '//clarity-forms-development.us2a.cloud.realm.io';
 // of computing the fine-grained change set if it's not necessary.
 var NOTIFIER_PATH = '/~/userRealm$';
 
-//declare admin user 
-let adminUser = undefined
-
 // The handleChange callback is called for every observed Realm file whenever it
 // has changes. It is called with a change event which contains the path, the Realm,
 // a version of the Realm from before the change, and indexes indication all objects
@@ -28,7 +25,7 @@ var handleChange = async function (changeEvent) {
 // register the event handler callback
 async function main() {
 		console.log('actually running');
-    adminUser = await Realm.Sync.User.login(`https:${SERVER_URL}`, 'realm-admin', 'Random2000!');
+    const adminUser = await Realm.Sync.User.login(`https:${SERVER_URL}`, Realm.Sync.Credentials.usernamePassword('real-admin', 'Random2000!'));
     Realm.Sync.addListener(`realms:${SERVER_URL}`, adminUser, NOTIFIER_PATH, 'change', handleChange);
 }
 
