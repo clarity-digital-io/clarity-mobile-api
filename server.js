@@ -19,6 +19,7 @@ var handleChange = async function (changeEvent) {
   var matches = changeEvent.path.match("^/([^/]+)/([^/]+)$");
 
 	console.log('userId', matches); 
+	console.log('testing if it disconnects');
 }
 
 // register the event handler callback
