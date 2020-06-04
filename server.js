@@ -6,7 +6,7 @@ var SERVER_URL = '//clarity-forms-development.us2a.cloud.realm.io';
 // The regular expression you provide restricts the observed Realm files to only the subset you
 // are actually interested in. This is done in a separate step to avoid the cost
 // of computing the fine-grained change set if it's not necessary.
-var NOTIFIER_PATH = '/~/userRealm$';
+var NOTIFIER_PATH = '/';
 
 // The handleChange callback is called for every observed Realm file whenever it
 // has changes. It is called with a change event which contains the path, the Realm,
@@ -28,8 +28,7 @@ async function main() {
 		try {
 			const adminUser = await Realm.Sync.User.login(`https:${SERVER_URL}`, Realm.Sync.Credentials.nickname('realm-admin', true));
 			console.log('adminUser', adminUser); 
-			//Realm.Sync.addListener(`realms:${SERVER_URL}`, adminUser, NOTIFIER_PATH, 'change', handleChange);
-			Realm.addListener('change', handleChange);
+			Realm.Sync.addListener(`realms:${SERVER_URL}`, adminUser, NOTIFIER_PATH, 'change', handleChange);
 		} catch (error) {
 			console.log('error', error);
 		}
