@@ -19,33 +19,11 @@ const main = async () => {
 		console.log('PORT0', PORT); 
 
 		const adminUser = await Realm.Sync.User.login(`https:${SERVER_URL}`, Realm.Sync.Credentials.nickname('realm-admin', true));
-
-		realm = await onAuthRealm(adminUser); 
+		const config = { 	sync: { user: adminUser, url: SERVER_URL + '/sandbox2', fullSynchronization: true, validate_ssl: false }, schema: [FormSchema]  };
+		realm = new Realm(config); 
 
 		app.emit('ready'); 
 
-	} catch (error) {
-		console.log('error', error);
-	}
-
-}
-
-
-const onAuthRealm = async (adminUser) => {
-	// Create a configuration to open the default Realm
-	try {
-
-		const config = { 	sync: { user: adminUser, url: SERVER_URL + '/sandbox2', fullSynchronization: true, validate_ssl: false }, schema: [FormSchema]  };
-
-		return Realm.open(config)
-			.progress((transferred, transferable) => {
-				console.log('progress', transferred, transferable)
-			})
-			.then(realm => {
-				return realm; 
-			})
-			.catch((e) => console.log('trying to open', e));
-			
 	} catch (error) {
 		console.log('error', error);
 	}
