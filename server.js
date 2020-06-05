@@ -72,7 +72,7 @@ app.post('/forms', async (req, res) => {
 	console.log('dogs', dogs); 
 
 	realm.write(() => {
-			console.log('write'); 
+			console.log('write', write); 
 
 			const	form = realm.create('Form__c', { 
 				Id: '1234567890',
