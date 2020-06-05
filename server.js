@@ -52,7 +52,6 @@ const onAuthRealm = async (user) => {
 
 }
 
-
 main(); 
 
 app.on('ready', function() { 
@@ -62,14 +61,13 @@ app.on('ready', function() {
 }); 
 
 app.post('/forms', async (req, res) => {
-	console.log('req', req.body); 
 
 	let form = parseForm(req.body); 
 
 	realm.write(() => {
 
 		const	form = realm.create('Form__c', { 
-				Id: '123456789110',
+				Id: '1234567189110',
 				Name: 'test1'
 			});
 
@@ -79,11 +77,8 @@ app.post('/forms', async (req, res) => {
 });
 
 const parseForm = (body) => {
-	let parsedBody = JSON.stringify(body); 
-	//let form = parsedBody.attributes;
-	console.log('body', body); 
-
-	console.log('form', JSON.parse(parsedBody)); 
+	let form = JSON.parse(body); 
+	console.log('form', form); 
 	return 'form'; 
 }
 
