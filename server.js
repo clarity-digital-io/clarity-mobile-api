@@ -77,7 +77,7 @@ app.post('/forms', async (req, res) => {
 });
 
 const parseForm = (body) => {
-	let form = JSON.parse(body); 
+	let form = body.attributes; 
 	console.log('form', form); 
 	return 'form'; 
 }
