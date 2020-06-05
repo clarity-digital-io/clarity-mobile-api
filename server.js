@@ -19,10 +19,11 @@ const main = async () => {
 		console.log('PORT0', PORT); 
 
 		const adminUser = await Realm.Sync.User.login(`https:${SERVER_URL}`, Realm.Sync.Credentials.nickname('realm-admin', true));
-		console.log('PORT1', PORT); 
+		const config = { 	sync: { user: adminUser, url: SERVER_URL + '/sandbox', fullSynchronization: true, validate_ssl: false }, schema: [FormSchema]  };
 
-		realm = await onAuthRealm(adminUser); 
-		console.log('PORT2', PORT); 
+
+		realm = await Realm.open(config); 
+		console.log('PORT2', realm); 
 		app.emit('ready'); 
 
 	} catch (error) {
@@ -31,24 +32,31 @@ const main = async () => {
 
 }
 
-const onAuthRealm = async (adminUser) => {
+// const onAuthRealm = async (adminUser) => {
 	
-	const config = { 	sync: { user: adminUser, url: SERVER_URL + '/sandbox', fullSynchronization: true, validate_ssl: false }, schema: [FormSchema]  };
 
-	console.log('onAuthRealm0'); 
+// 	console.log('onAuthRealm0'); 
 
-	return Realm.open(config)
-		.progress((transferred, transferable) => {
-			console.log('progress', transferred, transferable)
-		})
-		.then(realm => {
-			console.log('onAuthRealm1', realm); 
+// 	try {
 
-			return realm; 
-		})
-		.catch((e) => console.log('trying to open', e));
+// 		const realm 
+		
+// 	} catch (error) {
+		
+// 	}
 
-}
+// 	return Realm.open(config)
+// 		.progress((transferred, transferable) => {
+// 			console.log('progress', transferred, transferable)
+// 		})
+// 		.then(realm => {
+// 			console.log('onAuthRealm1', realm); 
+
+// 			return realm; 
+// 		})
+// 		.catch((e) => console.log('trying to open', e));
+
+// }
 
 main(); 
 
