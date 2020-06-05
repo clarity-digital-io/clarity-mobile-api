@@ -34,17 +34,11 @@ const onAuthRealm = async (adminUser) => {
 	try {
 
 		const config = { 	sync: { user: adminUser, url: SERVER_URL + '/~/forms' }, schema: [FormSchema]  };
+	
+		Realm.open(config).then((realm) => {
+				console.log('then', realm); 
+		});
 
-		return Realm.open(config)
-			.progress((transferred, transferable) => {
-				console.log('progress', transferred, transferable)
-			})
-			.then(realm => {
-				console.log('config realm');
-				return realm; 
-			})
-			.catch((e) => console.log('trying to open', e));
-			
 	} catch (error) {
 		console.log('error', error);
 	}
