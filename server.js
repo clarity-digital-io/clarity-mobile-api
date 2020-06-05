@@ -13,6 +13,10 @@ const PORT = process.env.PORT || 5000;
 
 let realm; 
 
+app.listen(PORT, () =>
+	console.log(`Example app listening on port ${PORT}!`),
+);
+
 const main = async () => {
 
 	try {
@@ -21,7 +25,7 @@ const main = async () => {
 		const adminUser = await Realm.Sync.User.login(`https:${SERVER_URL}`, Realm.Sync.Credentials.nickname('realm-admin', true));
 		realm = await onAuthRealm(adminUser); 
 
-		app.emit('ready'); 
+		//app.emit('ready'); 
 
 	} catch (error) {
 		console.log('error', error);
@@ -35,8 +39,9 @@ const onAuthRealm = async (adminUser) => {
 
 		const config = { 	sync: { user: adminUser, url: SERVER_URL + '/~/forms' }, schema: [FormSchema]  };
 	
-		Realm.open(config).then((realm) => {
-				console.log('then', realm); 
+		return Realm.open(config).then((realm) => {
+			console.log('then', realm); 
+			return realm; 
 		});
 
 	} catch (error) {
@@ -46,12 +51,6 @@ const onAuthRealm = async (adminUser) => {
 }
 
 main(); 
-
-app.on('ready', function() { 
-	app.listen(PORT, () =>
-		console.log(`Example app listening on port ${PORT}!`),
-	);
-}); 
 
 app.post('/forms', async (req, res) => {
 	console.log('req', req.body); 
