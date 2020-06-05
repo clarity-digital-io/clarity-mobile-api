@@ -3,8 +3,7 @@ const Realm = require('realm');
 const bodyParser = require('body-parser');
 
 const app = express();
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(bodyParser.json())
 
 const SERVER_URL = 'https://clarity-forms-development.us2a.cloud.realm.io';
 const REALM_URL = 'realms://clarity-forms-development.us2a.cloud.realm.io';
