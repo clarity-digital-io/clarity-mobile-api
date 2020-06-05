@@ -9,6 +9,8 @@ app.use(bodyParser.raw());
 
 const SERVER_URL = '//clarity-forms-development.us2a.cloud.realm.io';
 
+const PORT = process.env.PORT || 5000;
+
 let realm; 
 
 const main = async () => {
@@ -18,7 +20,7 @@ const main = async () => {
 		const adminUser = await Realm.Sync.User.login(`https:${SERVER_URL}`, Realm.Sync.Credentials.nickname('realm-admin', true));
 
 		realm = await onAuthRealm(adminUser); 
-
+		console.log('PORT', PORT); 
 		app.emit('ready'); 
 
 	} catch (error) {
@@ -45,8 +47,8 @@ const onAuthRealm = async (adminUser) => {
 main(); 
 
 app.on('ready', function() { 
-	app.listen(process.env.PORT, () =>
-		console.log(`Example app listening on port ${process.env.PORT}!`),
+	app.listen(PORT, () =>
+		console.log(`Example app listening on port ${PORT}!`),
 	);
 }); 
 
