@@ -8,14 +8,7 @@ app.post('/forms', (req, res) => {
 	console.log('req', req); 
 
 	//In the future first open realm then start service
-	const adminUser = await Realm.Sync.User.login(`https:${SERVER_URL}`, Realm.Sync.Credentials.nickname('realm-admin', true));
-	const realm = await Realm.open({
-			sync: {
-					user: adminUser,
-					url: `realms://${server_address}/`,
-			}
-	});
-	console.log('realm', realm); 
+	const response = await updateRealm(req); 
 // 	realm.write(() => {
 // 		// retrieves all Dogs from the Realm
 
@@ -38,3 +31,16 @@ app.post('/forms', (req, res) => {
 app.listen(process.env.PORT, () =>
   console.log(`Example app listening on port ${process.env.PORT}!`),
 );
+
+const updateRealm = async (req) => {
+
+	const adminUser = await Realm.Sync.User.login(`https:${SERVER_URL}`, Realm.Sync.Credentials.nickname('realm-admin', true));
+	const realm = await Realm.open({
+			sync: {
+					user: adminUser,
+					url: `realms://${server_address}/`,
+			}
+	});
+	console.log('realm', realm); 
+	return realm; 
+}
