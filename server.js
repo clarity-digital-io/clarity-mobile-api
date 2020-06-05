@@ -66,7 +66,7 @@ app.post('/forms', async (req, res) => {
 
 	realm.write(() => {
 
-		const	form = realm.create('Form__c', preparedForm);
+		const	form = realm.create('Form__c', preparedForm, 'modified');
 
 	});
 
