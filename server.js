@@ -78,7 +78,7 @@ const parseForm = (body) => {
 	const form = {
 		Id: body.Id,
 		Name: body.Name ? body.Name : '',
-		Title__c: body.Title__c ? body.Title__c : ''
+		Title__c: body.forms__Title__c ? body.forms__Title__c : ''
 	};
 
 	return form; 
