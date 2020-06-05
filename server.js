@@ -20,7 +20,7 @@ const main = async () => {
 		realm = await onAuthRealm(adminUser); 
 
 		app.emit('ready'); 
-		
+
 	} catch (error) {
 		console.log('error', error);
 	}
@@ -29,7 +29,7 @@ const main = async () => {
 
 const onAuthRealm = async (adminUser) => {
 	
-	const config = { 	sync: { user: adminUser, url: SERVER_URL + '/sandbox', fullSynchronization: true, validate_ssl: false } };
+	const config = { 	sync: { user: adminUser, url: SERVER_URL + '/sandbox', fullSynchronization: true, validate_ssl: false }, schema: [FormSchema]  };
 
 	return Realm.open(config)
 		.progress((transferred, transferable) => {
@@ -57,10 +57,20 @@ app.post('/forms', async (req, res) => {
 	realm.write(() => {
 
 	 realm.create('Form__c', { 
-		 Id: 'test'
+		 Id: '1234567890',
+		 Name: 'test1'
 	 });
 
  });
 
   return res.send('Received a POST HTTP method');
 });
+
+const FormSchema = {
+	name: 'Form__c',
+	primaryKey: 'Id',
+  properties: {
+    Id: 'string',
+		Name: 'string'
+  },
+};
