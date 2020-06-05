@@ -74,6 +74,7 @@ app.post('/forms', async (req, res) => {
 });
 
 const parseForm = (body) => {
+	console.log('body', body);
 	const form = {
 		Id: body.Id,
 		Name: body.Name ? body.Name : '',
