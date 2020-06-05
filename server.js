@@ -4,7 +4,7 @@ const app = express();
 
 const SERVER_URL = '//clarity-forms-development.us2a.cloud.realm.io';
 
-app.post('/forms', (req, res) => {
+app.post('/forms', async (req, res) => {
 	console.log('req', req); 
 
 	//In the future first open realm then start service
