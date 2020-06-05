@@ -35,7 +35,7 @@ const onAuthRealm = async (user) => {
 	// Create a configuration to open the default Realm
 	try {
 
-		const config = { 	sync: { user: adminUser, url: SERVER_URL + '/sandbox2', fullSynchronization: true, validate_ssl: false }, schema: [FormSchema]  };
+		const config = { 	sync: { user: user, url: SERVER_URL + '/sandbox2', fullSynchronization: true, validate_ssl: false }, schema: [FormSchema]  };
 
 		return Realm.open(config)
 			.progress((transferred, transferable) => {
