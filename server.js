@@ -66,7 +66,7 @@ app.on('ready', function() {
 app.post('/forms', async (req, res) => {
 	console.log('req', req.body); 
 
-	let form = parseForm(JSON.parse(req.body)); 
+	let form = parseForm(req.body); 
 
 	realm.write(() => {
 
