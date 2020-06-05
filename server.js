@@ -22,7 +22,8 @@ const main = async () => {
 		const config = { 	sync: { user: adminUser, url: SERVER_URL + '/sandbox', fullSynchronization: true, validate_ssl: false }, schema: [FormSchema]  };
 
 
-		realm = await Realm.open(config); 
+		// realm = await Realm.open(config); 
+		realm = new Realm(config);
 		console.log('PORT2', realm); 
 		app.emit('ready'); 
 
