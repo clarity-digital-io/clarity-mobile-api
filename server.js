@@ -1,7 +1,12 @@
 const express = require('express'); 
-const Realm = require('realm'); 
+const Realm = require('realm');
+const bodyParser = require('body-parser');
+
 const app = express();
- 
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(bodyParser.raw());
+
 const SERVER_URL = '//clarity-forms-development.us2a.cloud.realm.io';
 
 const main = async () => {
@@ -9,8 +14,8 @@ const main = async () => {
 	try {
 
 		const adminUser = await Realm.Sync.User.login(`https:${SERVER_URL}`, Realm.Sync.Credentials.nickname('realm-admin', true));
-		//const realm = await Realm.open({ sync: { user: adminUser, url: `realms:${SERVER_URL}/` } });
-		console.log('adminUser', adminUser);
+		const realm = await Realm.open({ sync: { user: adminUser, url: `realms:${SERVER_URL}/` } });
+		console.log('realm', realm);
 	} catch (error) {
 		console.log('error', error);
 	}
