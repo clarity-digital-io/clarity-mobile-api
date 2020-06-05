@@ -17,18 +17,7 @@ const main = async () => {
 
 		const adminUser = await Realm.Sync.User.login(`https:${SERVER_URL}`, Realm.Sync.Credentials.nickname('realm-admin', true));
 
-		const config = { 	sync: { user: adminUser, url: SERVER_URL + '/sandbox', fullSynchronization: true, validate_ssl: false } };
-
-		realm = Realm.open(config)
-			.progress((transferred, transferable) => {
-				console.log('progress', transferred, transferable)
-			})
-			.then(realm => {
-				return realm; 
-			})
-			.catch((e) => console.log('trying to open', e));
-
-		console.log('realm', realm);
+		realm = await onAuthRealm(adminUser); 
 
 	} catch (error) {
 		console.log('error', error);
@@ -37,6 +26,21 @@ const main = async () => {
 	app.listen(process.env.PORT, () =>
 		console.log(`Example app listening on port ${process.env.PORT}!`),
 	);
+
+}
+
+const onAuthRealm = (adminUser) => {
+	
+	const config = { 	sync: { user: adminUser, url: SERVER_URL + '/sandbox', fullSynchronization: true, validate_ssl: false } };
+
+	return Realm.open(config)
+		.progress((transferred, transferable) => {
+			console.log('progress', transferred, transferable)
+		})
+		.then(realm => {
+			return realm; 
+		})
+		.catch((e) => console.log('trying to open', e));
 
 }
 
