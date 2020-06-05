@@ -26,7 +26,7 @@ main();
 app.post('/forms', async (req, res) => {
 	console.log('req', req.body); 
 
-	console.log('realm', realm); 
+	//console.log('realm', realm); 
 // 	realm.write(() => {
 // 		// retrieves all Dogs from the Realm
 
