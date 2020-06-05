@@ -9,7 +9,7 @@ app.use(bodyParser.raw());
 
 const SERVER_URL = '//clarity-forms-development.us2a.cloud.realm.io';
 
-const realm; 
+let realm; 
 
 const main = async () => {
 
