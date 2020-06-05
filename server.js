@@ -22,10 +22,6 @@ const main = async () => {
 	} catch (error) {
 		console.log('error', error);
 	}
-	
-	app.listen(process.env.PORT, () =>
-		console.log(`Example app listening on port ${process.env.PORT}!`),
-	);
 
 }
 
@@ -45,6 +41,10 @@ const onAuthRealm = async (adminUser) => {
 }
 
 main(); 
+
+app.listen(process.env.PORT, () =>
+	console.log(`Example app listening on port ${process.env.PORT}!`),
+);
 
 app.post('/forms', async (req, res) => {
 	console.log('req', req.body); 
