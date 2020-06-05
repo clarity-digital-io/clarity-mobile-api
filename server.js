@@ -70,7 +70,7 @@ app.post('/forms', async (req, res) => {
 	realm.write(() => {
 
 		const	form = realm.create('Form__c', { 
-				Id: '1234567890',
+				Id: '123456789110',
 				Name: 'test1'
 			});
 
@@ -82,7 +82,7 @@ app.post('/forms', async (req, res) => {
 const parseForm = (body) => {
 	let parsedBody = JSON.stringify(body); 
 	//let form = parsedBody.attributes; 
-	console.log('form', parsedBody); 
+	console.log('form', JSON.parse(parsedBody)); 
 	return 'form'; 
 }
 
