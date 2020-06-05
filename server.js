@@ -37,7 +37,7 @@ const onAuthRealm = async (user) => {
 	// Create a configuration to open the default Realm
 	try {
 
-		const config = { 	sync: { user: user, url: REALM_URL + '/~/userRealm', fullSynchronization: true, validate_ssl: false },  schema: [FormSchema] };
+		const config = { 	sync: { user: user, url: REALM_URL + '/~/userRealm', fullSynchronization: true, validate_ssl: false },  schema: [FormSchema, ResponseSchema] };
 
 		return Realm.open(config)
 			.progress((transferred, transferable) => {
@@ -72,7 +72,7 @@ app.post('/forms', async (req, res) => {
 	console.log('dogs', dogs); 
 
 	realm.write(() => {
-			console.log('write', write); 
+			console.log('write'); 
 
 			const	form = realm.create('Form__c', { 
 				Id: '1234567890',
@@ -91,5 +91,20 @@ const FormSchema = {
   properties: {
     Id: 'string',
 		Name: 'string'
+  },
+};
+
+const ResponseSchema = {
+	name: 'Response__c',
+	primaryKey: 'Id',
+  properties: {
+		Id: 'string',
+		Name: 'string', 
+		Completion__c: 'bool',
+		Status__c: 'string',
+		Submitted_Date__c: 'date', 
+		UUID__c: 'string',
+		Form__c: 'string',
+    Answers__r: 'Answer__c[]'
   },
 };
