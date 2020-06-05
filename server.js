@@ -9,6 +9,8 @@ app.use(bodyParser.raw());
 
 const SERVER_URL = '//clarity-forms-development.us2a.cloud.realm.io';
 
+const realm; 
+
 const main = async () => {
 
 	try {
@@ -17,7 +19,7 @@ const main = async () => {
 
 		const config = { 	sync: { user: adminUser, url: SERVER_URL + '/sandbox', fullSynchronization: true, validate_ssl: false } };
 
-		const realm = Realm.open(config)
+		realm = Realm.open(config)
 			.progress((transferred, transferable) => {
 				console.log('progress', transferred, transferable)
 			})
