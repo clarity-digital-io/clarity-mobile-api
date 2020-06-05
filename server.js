@@ -105,6 +105,5 @@ const ResponseSchema = {
 		Submitted_Date__c: 'date', 
 		UUID__c: 'string',
 		Form__c: 'string',
-    Answers__r: 'Answer__c[]'
   },
 };
