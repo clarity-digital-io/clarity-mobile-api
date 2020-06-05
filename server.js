@@ -19,7 +19,7 @@ const main = async () => {
 		console.log('PORT0', PORT); 
 
 		const adminUser = await Realm.Sync.User.login(`https:${SERVER_URL}`, Realm.Sync.Credentials.nickname('realm-admin', true));
-		const config = { 	sync: { user: adminUser, url: SERVER_URL + '/sandbox2', fullSynchronization: false, validate_ssl: false }, schema: [FormSchema]  };
+		const config = { 	sync: { user: adminUser, url: SERVER_URL + '/sandbox2', fullSynchronization: true, validate_ssl: false }, schema: [FormSchema]  };
 		realm = new Realm(config); 
 
 		app.emit('ready'); 
