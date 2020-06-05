@@ -43,13 +43,15 @@ app.post('/forms', async (req, res) => {
 
 	console.log('realm', realm); 
 	realm.write(() => {
+			console.log('write', write); 
 
-	 realm.create('Form__c', { 
-		 Id: '1234567890',
-		 Name: 'test1'
-	 });
+			const	form = realm.create('Form__c', { 
+				Id: '1234567890',
+				Name: 'test1'
+			});
 
- });
+			console.log('form', form); 
+	});
 
   return res.send('Received a POST HTTP method');
 });
