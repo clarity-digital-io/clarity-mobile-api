@@ -45,7 +45,7 @@ const onAuthRealm = async (adminUser) => {
 main(); 
 
 app.on('ready', function() { 
-	app.listen(process.env.PORT || 5000, () =>
+	app.listen(process.env.PORT, () =>
 		console.log(`Example app listening on port ${process.env.PORT}!`),
 	);
 }); 
