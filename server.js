@@ -39,7 +39,7 @@ const updateRealm = async (req) => {
 	const realm = await Realm.open({
 			sync: {
 					user: adminUser,
-					url: `realms://${server_address}/`,
+					url: `realms://${SERVER_URL}/`,
 			}
 	});
 	console.log('realm', realm); 
