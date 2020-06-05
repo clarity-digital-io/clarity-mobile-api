@@ -29,7 +29,7 @@ const main = async () => {
 
 }
 
-const onAuthRealm = (adminUser) => {
+const onAuthRealm = async (adminUser) => {
 	
 	const config = { 	sync: { user: adminUser, url: SERVER_URL + '/sandbox', fullSynchronization: true, validate_ssl: false } };
 
