@@ -76,7 +76,8 @@ app.post('/forms', async (req, res) => {
 const parseForm = (body) => {
 	const form = {
 		Id: body.Id,
-		Name: body.Name ? body.Name : ''
+		Name: body.Name ? body.Name : '',
+		Title__c: body.Title__c ? body.Title__c : ''
 	};
 
 	return form; 
@@ -87,7 +88,8 @@ const FormSchema = {
 	primaryKey: 'Id',
   properties: {
     Id: 'string',
-		Name: 'string'
+		Name: 'string',
+		Title__c: 'string',
   },
 };
 
