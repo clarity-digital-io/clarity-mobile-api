@@ -62,14 +62,11 @@ app.on('ready', function() {
 
 app.post('/forms', async (req, res) => {
 
-	let form = parseForm(req.body); 
+	const form = parseForm(req.body); 
 
 	realm.write(() => {
 
-		const	form = realm.create('Form__c', { 
-				Id: '1234567189110',
-				Name: 'test1'
-			});
+		const	form = realm.create('Form__c', form);
 
 	});
 
@@ -77,9 +74,12 @@ app.post('/forms', async (req, res) => {
 });
 
 const parseForm = (body) => {
-	let form = body.attributes; 
-	console.log('form', form); 
-	return 'form'; 
+	const form = {
+		Id: body.Id,
+		Name: body.Name ? body.Name : ''
+	};
+
+	return form; 
 }
 
 const FormSchema = {
