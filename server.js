@@ -15,7 +15,7 @@ const main = async () => {
 
 		const adminUser = await Realm.Sync.User.login(`https:${SERVER_URL}`, Realm.Sync.Credentials.nickname('realm-admin', true));
 
-		const config = { 	sync: { user: adminUser, url: REALM_URL + '/sandbox', fullSynchronization: true, validate_ssl: false } };
+		const config = { 	sync: { user: adminUser, url: SERVER_URL + '/sandbox', fullSynchronization: true, validate_ssl: false } };
 
 		const realm = Realm.open(config)
 			.progress((transferred, transferable) => {
