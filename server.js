@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 
 app.post('/forms', (req, res) => {
+	console.log('req', req); 
   return res.send('Received a POST HTTP method');
 });
 
