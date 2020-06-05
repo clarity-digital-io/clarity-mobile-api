@@ -50,21 +50,13 @@ app.post('/forms', async (req, res) => {
 	console.log('req', req.body); 
 
 	console.log('realm', realm); 
-// 	realm.write(() => {
-// 		// retrieves all Dogs from the Realm
+	realm.write(() => {
 
-// 	 realm.create('Form__c', { 
-// 		 Id: responseId,
-// 		 Name: 'test', 
-// 		 Completion__c: false,
-// 		 Status__c: 'test',
-// 		 Submitted_Date__c: new Date(), 
-// 		 UUID__c: responseId,
-// 		 Form__c: form.Id,
-// 		 Answers__r: []
-// 	 });
+	 realm.create('Form__c', { 
+		 Id: 'test'
+	 });
 
-//  });
+ });
 
   return res.send('Received a POST HTTP method');
 });
