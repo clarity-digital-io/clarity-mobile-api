@@ -5,18 +5,20 @@ const app = express();
 const SERVER_URL = '//clarity-forms-development.us2a.cloud.realm.io';
 
 const main = async () => {
-	const adminUser = await Realm.Sync.User.login(`https:${SERVER_URL}`, Realm.Sync.Credentials.nickname('realm-admin', true));
 
-	const realm = await Realm.open({
-		sync: {
-				user: adminUser,
-				url: `realms:${SERVER_URL}/`,
-		}
-	});
+	try {
+
+		const adminUser = await Realm.Sync.User.login(`https:${SERVER_URL}`, Realm.Sync.Credentials.nickname('realm-admin', true));
+		const realm = await Realm.open({ sync: { user: adminUser, url: `realms:${SERVER_URL}/` } });
+	
+	} catch (error) {
+		console.log('error', error);
+	}
 	
 	app.listen(process.env.PORT, () =>
 		console.log(`Example app listening on port ${process.env.PORT}!`),
 	);
+	
 }
 
 main(); 
