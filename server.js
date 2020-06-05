@@ -62,11 +62,11 @@ app.on('ready', function() {
 
 app.post('/forms', async (req, res) => {
 
-	const form = parseForm(req.body); 
+	const preparedForm = parseForm(req.body); 
 
 	realm.write(() => {
 
-		const	form = realm.create('Form__c', form);
+		const	form = realm.create('Form__c', preparedForm);
 
 	});
 
