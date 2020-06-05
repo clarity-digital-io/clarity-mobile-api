@@ -14,8 +14,17 @@ const main = async () => {
 	try {
 
 		const adminUser = await Realm.Sync.User.login(`https:${SERVER_URL}`, Realm.Sync.Credentials.nickname('realm-admin', true));
-		const realm = await Realm.open({ sync: { user: adminUser, url: `realms:${SERVER_URL}/` } });
+		const realm = Realm.open(config)
+			.progress((transferred, transferable) => {
+				console.log('progress', transferred, transferable)
+			})
+			.then(realm => {
+				return realm; 
+			})
+			.catch((e) => console.log('trying to open', e));
+
 		console.log('realm', realm);
+
 	} catch (error) {
 		console.log('error', error);
 	}
