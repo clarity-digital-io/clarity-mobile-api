@@ -19,7 +19,7 @@ const main = async () => {
 		console.log('PORT0', PORT); 
 
 		const adminUser = await Realm.Sync.User.login(`https:${SERVER_URL}`, Realm.Sync.Credentials.nickname('realm-admin', true));
-		realm = await onAuthRealm(user); 
+		realm = await onAuthRealm(adminUser); 
 
 		app.emit('ready'); 
 
