@@ -68,7 +68,7 @@ app.post('/forms', async (req, res) => {
 
 	console.log('realm', realm); 
 
-	let dogs = realm.objects('Form__c');
+	let dogs = realm.objects('Response__c');
 	console.log('dogs', dogs); 
 
 	realm.write(() => {
