@@ -24,7 +24,7 @@ const main = async () => {
     realm = await Realm.open({
         sync: {
             user: adminUser,
-            url: REALM_URL + '/~/form'
+            url: REALM_URL + '/~/userRealm'
         }
 		});
 		
