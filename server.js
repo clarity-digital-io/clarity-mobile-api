@@ -19,6 +19,8 @@ const main = async () => {
 
 		realm = await onAuthRealm(adminUser); 
 
+		app.emit('ready'); 
+		
 	} catch (error) {
 		console.log('error', error);
 	}
@@ -42,9 +44,11 @@ const onAuthRealm = async (adminUser) => {
 
 main(); 
 
-app.listen(process.env.PORT || 5000, () =>
-	console.log(`Example app listening on port ${process.env.PORT}!`),
-);
+app.on('ready', function() { 
+	app.listen(process.env.PORT || 5000, () =>
+		console.log(`Example app listening on port ${process.env.PORT}!`),
+	);
+}); 
 
 app.post('/forms', async (req, res) => {
 	console.log('req', req.body); 
