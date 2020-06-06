@@ -4,9 +4,9 @@
 	"description": "Realm Integration for Offline Mobile Forms",
 	"license": "MIT",
 	"scripts": {
-		"start": "npm run prod",
+		"start": "npm run dev",
 		"build": "npm-run-all clean transpile",
-		"server": "node ./dist-server/bin/www",
+		"server": "node ./dist-server/",
 		"dev": "NODE_ENV=development npm-run-all build server",
 		"prod": "NODE_ENV=production npm-run-all build server",
 		"transpile": "babel ./server --out-dir dist-server",
