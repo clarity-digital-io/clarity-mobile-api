@@ -14,7 +14,7 @@ app.use(bodyParser.json())
 
 app.on('ready', function() { 
 	app.listen(PORT, () =>
-		console.log(`Example app listening on port ${PORT}!`),
+		console.log(`App listening on port ${PORT}!`),
 	);
 }); 
 
