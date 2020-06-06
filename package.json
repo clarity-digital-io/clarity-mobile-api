@@ -19,6 +19,14 @@
 			"server/*"
 		]
 	},
+	"babel": {
+		"presets": [
+			"@babel/preset-env"
+		],
+		"plugins": [
+			"@babel/plugin-transform-runtime"
+		]
+	},
 	"dependencies": {
 		"auth0": "^2.25.1",
 		"body-parser": "^1.19.0",
