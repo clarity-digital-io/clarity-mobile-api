@@ -15,7 +15,7 @@ export const main = async (realm, app) => {
 
 }
 
-export const openRealm = async (user) => {
+const openRealm = async (user) => {
 	// Create a configuration to open the default Realm
 	try {
 

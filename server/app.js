@@ -2,6 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import initRouter from './routes/init';
 import formsRouter from './routes/forms';
+import { main } from './realm';
 
 const PORT = process.env.PORT || 5000;
 
