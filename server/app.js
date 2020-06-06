@@ -1,7 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import {initRouter} from './routes/init';
-import {formsRouter} from './routes/forms';
+import initRouter from './routes/init';
+import formsRouter from './routes/forms';
 
 const PORT = process.env.PORT || 5000;
 
