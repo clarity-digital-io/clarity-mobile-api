@@ -1,5 +1,5 @@
 import Realm from 'realm';
-import { FormSchema, ResponseSchema } from './schema'; 
+import { FormSchema, QuestionSchema } from './schema'; 
 
 const SERVER_URL = 'https://clarity-forms-development.us2a.cloud.realm.io';
 const REALM_URL = 'realms://clarity-forms-development.us2a.cloud.realm.io';
