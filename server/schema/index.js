@@ -1,5 +1,3 @@
-const Realm = require('realm'); 
-
 export const FormSchema = {
 	name: 'Form__c',
 	primaryKey: 'Id',
@@ -43,4 +41,18 @@ export const QuestionSchema = {
 		Record_Group__c: 'string',
 		Prefill_Type__c: 'string'
   }
+};
+
+export const ResponseSchema = {
+	name: 'Response__c',
+	primaryKey: 'Id',
+  properties: {
+		Id: 'string',
+		Name: 'string', 
+		Completion__c: 'bool',
+		Status__c: 'string',
+		Submitted_Date__c: 'date', 
+		UUID__c: 'string',
+		Form__c: 'string',
+  },
 };
