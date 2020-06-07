@@ -15,10 +15,9 @@ const password = 'Clarity2020!hK0S8pi2pXOQ7tjsADGijhFV';
 var router = express.Router();
 
 router.post('/', async (req, res) => {
-	console.log('req.body', req.body, req.params);
 
 	const data = await verifyOrganizationAccess(req.body, req.params);
-
+	console.log('data.access', data.access); 
 	if(data.access != 'valid') {
 		return res.status(401).send({ access: false, description: 'No mobile access for Organization.' });
 	}
