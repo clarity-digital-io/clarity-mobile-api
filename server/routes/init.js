@@ -86,7 +86,7 @@ const prepareForms = (salesforceForms) => {
 
 	})
 
-	return form; 
+	return forms; 
 }
 
 const sync = async(realm) => {
