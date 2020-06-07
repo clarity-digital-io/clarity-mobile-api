@@ -28,8 +28,6 @@ router.post('/', async (req, res) => {
 
 	const status = await sync(realm, forms, questions);
 
-	console.log('return name of realm'); 
-	console.log('close realm after syncing and start new worker that listens to this realm');
 	res.send('Received a POST HTTP method');
 	
 });
@@ -72,7 +70,7 @@ const openRealm = async (organizationId) => {
 }
 
 const prepareForms = (salesforceForms) => {
-	console.log('salesforceForms', salesforceForms);
+
 	const forms = salesforceForms.reduce((accum, obj) => {
 
 		let { form, questions } = obj;
@@ -84,6 +82,7 @@ const prepareForms = (salesforceForms) => {
 		};
 
 		let nQuestions = questions.map(question => {
+			console.log('question', question);
 			return {
 				Id: question.Id
 			}
