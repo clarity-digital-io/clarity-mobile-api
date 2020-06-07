@@ -128,9 +128,10 @@ const sync = async(realm, forms) => {
 
 			const updatedForm = realm.create('Form__c', form, 'all');
 			let questionsList = updatedForm.Questions__r;
+			console.log('questionsList', questionsList); 
 			questions.forEach(question => {
 
-				questionsList.List(question); 
+				questionsList.push(question); 
 	
 			});
 
