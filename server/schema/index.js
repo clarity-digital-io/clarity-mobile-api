@@ -24,16 +24,15 @@ export const QuestionSchema = {
     Order__c: {type: 'int', default: 0},
     Lookup__c: 'data?',
 		Max_Length__c: 'int',
-		Max_Length__c: {type: 'string', default: ''},
 		Max_Range__c: 'int',
-		Min_Range__c: {type: 'int', default: 0 },
+		Min_Range__c: 'int',
 		Page__c: 'int',
 		Required__c: 'bool',
-		Salesforce_Field__c: {type: 'string', default: ''},
-		Salesforce_Object__c: {type: 'string', default: ''},
+		Salesforce_Field__c: 'data?',
+		Salesforce_Object__c: 'data?',
 		Logic__c: {type: 'string', default: ''},
 		FreeText_Type__c: {type: 'string', default: ''},
-		Record_Group__c: {type: 'string', default: ''},
-		Prefill_Type__c: {type: 'string', default: ''}
+		Record_Group__c: 'data?',
+		Prefill_Type__c: 'data?'
   }
 };
