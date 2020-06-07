@@ -73,15 +73,17 @@ const openRealm = async (organizationId) => {
 
 const prepareForms = (salesforceForms) => {
 	console.log('salesforceForms', salesforceForms);
-	const forms = salesforceForms.reduce((accum, { form, questions }) => {
+	const forms = salesforceForms.reduce((accum, obj) => {
 
-		let form = {
+		let { form, questions } = obj;
+
+		let nForm = {
 			Id: form.Id,
 			Name: form.Name ? form.Name : '',
 			Title__c: form.forms__Title__c ? form.forms__Title__c : ''
 		};
 
-		let questions = questions.map(question => {
+		let nQuestions = questions.map(question => {
 			return {
 				Id: question.Id
 			}
@@ -90,8 +92,8 @@ const prepareForms = (salesforceForms) => {
 		let currentForms = accum['forms'];
 		let currentQuestions = accum['questions'];
 
-		accum['forms'] = currentForms.concat(form);
-		accum['questions'] = currentQuestions.concat(questions); 
+		accum['forms'] = currentForms.concat(nForm);
+		accum['questions'] = currentQuestions.concat(nQuestions); 
 
 		return accum; 
 
