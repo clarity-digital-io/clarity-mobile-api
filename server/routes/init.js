@@ -103,12 +103,12 @@ const prepareForms = (salesforceForms) => {
 			}
 		});
 
-		let form = {}; 
+		let preparedForm = {}; 
 
-		form['form'] = nForm;
-		form['questions'] = nQuestions; 
+		preparedForm['form'] = nForm;
+		preparedForm['questions'] = nQuestions; 
 
-		accum = accum.concat(form);
+		accum = accum.concat(preparedForm);
 
 		return accum; 
 
