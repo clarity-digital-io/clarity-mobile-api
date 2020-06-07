@@ -121,11 +121,13 @@ const sync = async(realm, forms, questions) => {
 
 	realm.write(() => {
 
-		forms.forEach(form => {
-			console.log('form', form); 
-			//realm.create('Form__c', form);
+		// forms.forEach(form => {
+		// 	console.log('form', form); 
+		// 	realm.create('Form__c', form);
 
-		});
+		// });
+
+		realm.create('Form__c', forms[0]);
 
 		questions.forEach(question => {
 			console.log('question', question); 
