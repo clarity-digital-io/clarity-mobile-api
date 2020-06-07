@@ -17,17 +17,16 @@ var router = express.Router();
 router.post('/', async (req, res) => {
 
 	const {data} = await verifyOrganizationAccess(req.body, req.params);
-	console.log('data.access', data.access); 
+
 	if(data.access != 'valid') {
 		return res.status(401).send({ access: false, description: 'No mobile access for Organization.' });
 	}
-	console.log('orgid', data.organizationId); 
-	console.log('if found then open new realm with orgid as /orgid/{userid}/response and /orgid/forms');
-	const realm = await openRealm(data.organizationId); 
+
+	const realm = await openRealm(data.organizationId);
+	
+	const forms = prepareForms(req.body); 
 
 	const status = await sync(realm);
-
-	console.log('if opened successfully start syncing the forms');
 
 	console.log('return name of realm'); 
 	console.log('close realm after syncing and start new worker that listens to this realm');
@@ -70,6 +69,22 @@ const openRealm = async (organizationId) => {
 		console.log('error', error);
 	}
 
+}
+
+const prepareForms = (body) => {
+
+	console.log('body', body); 
+
+	const forms = body.map(form => {
+		console.log('form', form); 
+		return {
+			Id: form.Id,
+			Name: form.Name ? form.Name : '',
+			Title__c: form.forms__Title__c ? form.forms__Title__c : '',
+		};
+	})
+
+	return form; 
 }
 
 const sync = async(realm) => {
