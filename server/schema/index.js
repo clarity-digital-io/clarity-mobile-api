@@ -9,11 +9,11 @@ export const FormSchema = {
 		CreatedDate: 'data?',
 		Multi_Page__c: {type: 'bool', default: false},
 		Has_Thank_You__c: {type: 'bool', default: false},
-		Thank_You_Redirect__c: 'data?',
-		Limit__c: 'data?',
+		Thank_You_Redirect__c:  {type: 'string', default: ''},
+		Limit__c: {type: 'int', default: 0 },
 		Multi_Page_Val__c: {type: 'string', default: ''},
 		Multi_Page_Info__c: {type: 'string', default: ''},
-		End_Date__c: 'data?',
+		End_Date__c: {type: 'date', default: new Date() },
 		Question__r: 'Question__c[]'
   },
 };
