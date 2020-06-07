@@ -128,7 +128,7 @@ const sync = async(realm, forms, questions) => {
 
 		questions.forEach(question => {
 			console.log('question', question); 
-			//realm.create('Question__c', question);
+			realm.create('Question__c', question);
 
 		});
 
