@@ -9,18 +9,11 @@ const PORT = process.env.PORT || 5000;
 let app = express();
 let realm; 
 
-main(realm, app); 
-
 app.use(bodyParser.json())
 
-app.on('ready', function() { 
-	app.listen(PORT, () =>
-		console.log(`App listening on port ${PORT}!`),
-	);
-}); 
-
 app.use('/:organizationId/init', initRouter);
-console.log('disconnect org'); 
 app.use('/:organizationId/forms', formsRouter);
 
-export default app;
+app.listen(PORT, () =>
+	console.log(`App listening on port ${PORT}!`),
+);
