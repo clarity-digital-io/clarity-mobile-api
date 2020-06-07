@@ -73,26 +73,6 @@ const openRealm = async (organizationId) => {
 
 const prepareForms = (salesforceForms) => {
 	console.log('salesforceForms', salesforceForms);
-	const forms = salesforceForms.map(obj => {
-
-		let form = obj.form;
-
-		let questions = obj.questions.map(question => {
-			return {
-				Id: question.Id,
-				Name: question.Name ? question.Name : ''
-			};
-		}); 
-	
-		return {
-			Id: form.Id,
-			Name: form.Name ? form.Name : '',
-			Title__c: form.forms__Title__c ? form.forms__Title__c : ''
-		};
-
-	});
-
-
 	const forms = salesforceForms.reduce((accum, { form, questions }) => {
 
 		let form = {
