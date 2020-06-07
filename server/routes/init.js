@@ -82,12 +82,9 @@ const prepareForms = (salesforceForms) => {
 			Status__c: form.forms__Status__c,
 			CreatedDate: form.CreatedDate,
 			Multi_Page__c: form.forms__Multi_Page__c,
-			Has_Thank_You__c: form.forms__Has_Thank_You__c,
-			Thank_You_Redirect__c: form.forms__Thank_You_Redirect__c,
 			Limit__c: form.forms__Limit__c,
 			Multi_Page_Val__c: form.forms__Multi_Page_Val__c,
-			Multi_Page_Info__c: form.forms__Multi_Page_Info__c,
-			End_Date__c: form.forms__End_Date__c,
+			Multi_Page_Info__c: form.forms__Multi_Page_Info__c
 		};
 
 		let nQuestions = questions.map(question => {
