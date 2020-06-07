@@ -20,11 +20,11 @@ router.post('/', async (req, res) => {
 	const data = await verifyOrganizationAccess(req.body, req.params);
 
 	if(data.access != 'valid') {
-		res.status(401).send({ access: false, description: 'No mobile access for Organization.' });
+		return res.status(401).send({ access: false, description: 'No mobile access for Organization.' });
 	}
 
 	console.log('if found then open new realm with orgid as /orgid/{userid}/response and /orgid/forms');
-	const realm = await openRealm(); 
+	const realm = await openRealm(data.organizationId); 
 	console.log('realm', realm); 
 	const status = await sync(realm);
 
@@ -49,7 +49,7 @@ const verifyOrganizationAccess = async (body, params) => {
 
 }
 
-const openRealm = async () => {
+const openRealm = async (organizationId) => {
 	// Create a configuration to open the default Realm
 	try {
 
