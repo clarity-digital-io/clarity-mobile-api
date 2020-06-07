@@ -50,7 +50,7 @@ const openRealm = async (organizationId) => {
 	try {
 
 		const adminUser = await Realm.Sync.User.login(SERVER_URL, Realm.Sync.Credentials.nickname('realm-admin', true));
-		const config = { 	sync: { user: adminUser, url: REALM_URL + `/${organizationId}/forms`, fullSynchronization: true, validate_ssl: false },  schema: [FormSchema, ResponseSchema, QuestionSchema] };
+		const config = { 	sync: { user: adminUser, url: REALM_URL + `/${organizationId}/forms`, fullSynchronization: true, validate_ssl: false },  schema: [FormSchema, QuestionSchema] };
 
 		return Realm.open(config)
 			.progress((transferred, transferable) => {
@@ -74,7 +74,7 @@ const prepareForms = (salesforceForms) => {
 	const forms = salesforceForms.reduce((accum, obj) => {
 
 		let { form, questions } = obj;
-		console.log('form', form); 
+
 		let nForm = {
 			Id: form.Id,
 			Name: form.Name,
