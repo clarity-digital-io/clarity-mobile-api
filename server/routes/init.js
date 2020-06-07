@@ -75,7 +75,7 @@ const prepareForms = (body) => {
 
 	console.log('body', body); 
 
-	const forms = body.map(form => {
+	const forms = body.forms.map(form => {
 		console.log('form', form); 
 		return {
 			Id: form.Id,
