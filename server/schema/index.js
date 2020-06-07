@@ -9,7 +9,7 @@ export const FormSchema = {
 		Multi_Page__c: {type: 'bool', default: false},
 		Multi_Page_Val__c: {type: 'bool', default: false},
 		Multi_Page_Info__c: {type: 'string', default: ''},
-		Questions__r: {type: 'linkingObjects', objectType: 'Question__c', property: 'Form__c'}
+		Questions__r: 'Question__c[]'
   },
 };
 
@@ -19,7 +19,7 @@ export const QuestionSchema = {
   properties: {
 		Id: 'string',
 		Name: 'string',
-    Form__c: 'string',
+    Form__c: {type: 'linkingObjects', objectType: 'Form__c', property: 'Questions__r'},
     Title__c: 'string',
     Order__c: {type: 'int', default: 0},
     Lookup__c: 'data?',
