@@ -1,5 +1,10 @@
 import express from 'express';
 import axios from 'axios';
+import Realm from 'realm';
+import { FormSchema, ResponseSchema, QuestionSchema } from '../schema'; 
+
+const SERVER_URL = 'https://clarity-forms-development.us2a.cloud.realm.io';
+const REALM_URL = 'realms://clarity-forms-development.us2a.cloud.realm.io';
 
 const grant_type = 'password';     
 const client_id = '3MVG9Z8h6Bxz0zc4V._snL15FoFtwlrYRmvezul8wMJk0jx5CqffMMlS0afWQIQ9clkd1mZOxy.j6DTR4p7m9'; 
@@ -12,11 +17,17 @@ var router = express.Router();
 router.post('/', async (req, res) => {
 	console.log('req.body', req.body, req.params);
 
-	const access = await verifyOrganizationAccess(req.body, req.params);
-	console.log('access', access);
-	console.log('need to check against clarityforce salesforce org the org if it has access');
+	const data = await verifyOrganizationAccess(req.body, req.params);
+
+	if(data.access != 'valid') {
+		res.status(401).send({ access: false, description: 'No mobile access for Organization.' });
+	}
+
 	console.log('if found then open new realm with orgid as /orgid/{userid}/response and /orgid/forms');
-	console.log('open new realm with admin user'); 
+	const realm = await openRealm(); 
+	console.log('realm', realm); 
+	const status = await sync(realm);
+
 	console.log('if opened successfully start syncing the forms');
 
 	console.log('return name of realm'); 
@@ -35,6 +46,34 @@ const verifyOrganizationAccess = async (body, params) => {
 	} catch (error) {
 		console.log('error', error); 
 	}
+
+}
+
+const openRealm = async () => {
+	// Create a configuration to open the default Realm
+	try {
+
+		const adminUser = await Realm.Sync.User.login(`https:${SERVER_URL}`, Realm.Sync.Credentials.nickname('realm-admin', true));
+		const config = { 	sync: { user: adminUser, url: REALM_URL + '/~/userRealm', fullSynchronization: true, validate_ssl: false },  schema: [FormSchema, ResponseSchema, QuestionSchema] };
+
+		return Realm.open(config)
+			.progress((transferred, transferable) => {
+				console.log('progress', transferred, transferable)
+			})
+			.then(realm => {
+				return realm; 
+			})
+			.catch((e) => {
+				console.log('trying to open', e);
+			});
+			
+	} catch (error) {
+		console.log('error', error);
+	}
+
+}
+
+const sync = async(realm) => {
 
 }
 
