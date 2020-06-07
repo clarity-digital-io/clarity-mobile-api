@@ -24,7 +24,7 @@ router.post('/', async (req, res) => {
 
 	const realm = await openRealm(data.organizationId);
 	
-	const forms = prepareForms(req.body); 
+	const forms = prepareForms(req.body.forms); 
 
 	const status = await sync(realm);
 
@@ -71,17 +71,19 @@ const openRealm = async (organizationId) => {
 
 }
 
-const prepareForms = (body) => {
+const prepareForms = (forms) => {
 
-	console.log('body', body); 
+	const forms = forms.map(obj => {
 
-	const forms = body.forms.map(form => {
-		console.log('form', form); 
+		let form = obj.form;
+		let questions = obj.questions; 
+		console.log(questions)
 		return {
 			Id: form.Id,
 			Name: form.Name ? form.Name : '',
 			Title__c: form.forms__Title__c ? form.forms__Title__c : '',
 		};
+
 	})
 
 	return form; 
