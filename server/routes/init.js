@@ -109,10 +109,9 @@ const prepareForms = (salesforceForms) => {
 		preparedForm['questions'] = nQuestions; 
 
 		accum = accum.concat(preparedForm);
-		console.log('accum', accum); 
 		return accum; 
 
-	}, [{ form: {}, questions: [] }])
+	}, [])
 	
 	return forms; 
 }
@@ -122,6 +121,7 @@ const sync = async(realm, forms) => {
 	realm.write(() => {
 
 		forms.forEach(preparedForm => {
+			console.log('preparedForm', preparedForm);
 
 			let form = preparedForm.form; 
 			let questions = preparedForm.questions; 
