@@ -77,14 +77,33 @@ const prepareForms = (salesforceForms) => {
 
 		let nForm = {
 			Id: form.Id,
-			Name: form.Name ? form.Name : '',
-			Title__c: form.forms__Title__c ? form.forms__Title__c : ''
+			Name: form.Name,
+			Title__c: form.forms__Title__c,
+			Status__c: form.forms__Status__c,
+			CreatedDate: form.CreatedDate,
+			Multi_Page__c: form.forms__Multi_Page__c,
+			Has_Thank_You__c: form.forms__Has_Thank_You__c,
+			Thank_You_Redirect__c: form.forms__Thank_You_Redirect__c,
+			Limit__c: form.forms__Limit__c,
+			Multi_Page_Val__c: form.forms__Multi_Page_Val__c,
+			Multi_Page_Info__c: form.forms__Multi_Page_Info__c,
+			End_Date__c: form.forms__End_Date__c,
 		};
 
 		let nQuestions = questions.map(question => {
-			console.log('question', question);
 			return {
-				Id: question.Id
+				Id: question.Id,
+				Form__c: question.forms__Form__c,
+				FreeText_Type__c: question.forms__FreeText_Type__c,
+				Logic__c: question.forms__Logic__c,
+				Max_Length__c: question.forms__Max_Length__c,
+				Max_Range__c: question.forms__Max_Range__c,
+				Min_Range__c: question.forms__Min_Range__c,
+				Order__c: question.forms__Order__c,
+				Page__c: question.forms__Page__c,
+				Required__c: question.forms__Required__c,
+				Title__c: question.forms__Title__c,
+				Type__c: question.forms__Type__c,
 			}
 		});
 
