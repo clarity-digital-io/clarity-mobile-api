@@ -24,9 +24,9 @@ router.post('/', async (req, res) => {
 
 	const realm = await openRealm(data.organizationId);
 	
-	const { forms, questions } = prepareForms(req.body.forms); 
+	const forms = prepareForms(req.body.forms); 
 
-	const status = await sync(realm, forms, questions);
+	const status = await sync(realm, forms);
 
 	res.send('Received a POST HTTP method');
 	
@@ -103,17 +103,17 @@ const prepareForms = (salesforceForms) => {
 			}
 		});
 
-		let currentForms = accum['forms'];
-		let currentQuestions = accum['questions'];
+		let form = {}; 
 
-		accum['forms'] = currentForms.concat(nForm);
-		accum['questions'] = currentQuestions.concat(nQuestions); 
+		form['form'] = nForm;
+		form['questions'] = nQuestions; 
+
+		accum = accum.concat(form);
 
 		return accum; 
 
-	}, { forms: [], questions: [] })
+	}, [{ form: {}, questions: [] }])
 	
-
 	return forms; 
 }
 
@@ -123,13 +123,16 @@ const sync = async(realm, forms, questions) => {
 
 		forms.forEach(form => {
 
-			realm.create('Form__c', form, 'all');
+			let form = form.form; 
+			let questions = form.questions; 
 
-		});
+			const updatedForm = realm.create('Form__c', form, 'all');
+			let questionsList = updatedForm.Questions__r;
+			questions.forEach(question => {
 
-		questions.forEach(question => {
-
-			realm.create('Question__c', question, 'all');
+				questionsList.List(question); 
+	
+			});
 
 		});
 

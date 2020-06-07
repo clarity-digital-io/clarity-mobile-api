@@ -19,7 +19,7 @@ export const QuestionSchema = {
   properties: {
 		Id: 'string',
 		Name: 'string',
-    Form__c: {type: 'linkingObjects', objectType: 'Form__c', property: 'Questions__r'},
+    Form__c: 'string',
     Title__c: 'string',
     Order__c: {type: 'int', default: 0},
     Lookup__c: 'data?',
