@@ -16,7 +16,7 @@ var router = express.Router();
 
 router.post('/', async (req, res) => {
 
-	const {data} = await verifyOrganizationAccess(req.body, req.params);
+	const { data } = await verifyOrganizationAccess(req.body, req.params);
 
 	if(data.access != 'valid') {
 		return res.status(401).send({ access: false, description: 'No mobile access for Organization.' });
