@@ -26,7 +26,7 @@ router.post('/', async (req, res) => {
 	console.log('if found then open new realm with orgid as /orgid/{userid}/response and /orgid/forms');
 	const realm = await openRealm(data.organizationId); 
 	console.log('realm', realm); 
-	const status = await sync(realm);
+	const status = sync(realm);
 
 	console.log('if opened successfully start syncing the forms');
 
