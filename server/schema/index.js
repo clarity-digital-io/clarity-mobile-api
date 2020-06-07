@@ -8,7 +8,7 @@ export const FormSchema = {
 		Status__c: 'string',
 		CreatedDate: 'data?',
 		Multi_Page__c: {type: 'bool', default: false},
-		Multi_Page_Val__c: {type: 'string', default: ''},
+		Multi_Page_Val__c: {type: 'bool', default: false},
 		Multi_Page_Info__c: {type: 'string', default: ''},
 		Question__r: 'Question__c[]'
   },
