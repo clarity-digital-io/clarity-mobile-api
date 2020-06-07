@@ -121,14 +121,14 @@ const sync = async(realm, forms) => {
 	realm.write(() => {
 
 		forms.forEach(preparedForm => {
-			console.log('preparedForm', preparedForm);
 
 			let form = preparedForm.form; 
 			let questions = preparedForm.questions; 
-			console.log('form', form);
-			const updatedForm = realm.create('Form__c', form, 'all');
+			let updatedForm = realm.create('Form__c', form, 'all');
 			let questionsList = updatedForm.Questions__r;
-			console.log('questionsList', questionsList); 
+			if(questionsList.length > 0) {
+				realm.delete(questionsList);
+			}
 			questions.forEach(question => {
 
 				questionsList.push(question); 
@@ -139,7 +139,7 @@ const sync = async(realm, forms) => {
 
 	});
 
- realm.close(); 
+	realm.close(); 
 
 }
 
