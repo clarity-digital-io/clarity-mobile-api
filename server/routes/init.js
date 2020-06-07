@@ -23,7 +23,7 @@ const verifyOrganizationAccess = async (body, params) => {
 
 	try {
 		const organizationId = body.org.Id; 
-		const response = await axios.post(`https://dream-business-5073-dev-ed.lightning.force.com/services/apexrest/Applications/${organizationId}`);
+		const response = await axios.post(`https://dream-business-5073-dev-ed.cs40.my.salesforce.com/services/apexrest/Applications/${organizationId}`);
 	} catch (error) {
 		console.log('error', error); 
 	}
