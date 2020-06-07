@@ -20,6 +20,7 @@ app.on('ready', function() {
 }); 
 
 app.use('/:organizationId/init', initRouter);
+console.log('disconnect org'); 
 app.use('/:organizationId/forms', formsRouter);
 
 export default app;
