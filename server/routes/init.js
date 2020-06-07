@@ -117,14 +117,14 @@ const prepareForms = (salesforceForms) => {
 	return forms; 
 }
 
-const sync = async(realm, forms, questions) => {
+const sync = async(realm, forms) => {
 
 	realm.write(() => {
 
-		forms.forEach(form => {
+		forms.forEach(preparedForm => {
 
-			let form = form.form; 
-			let questions = form.questions; 
+			let form = preparedForm.form; 
+			let questions = preparedForm.questions; 
 
 			const updatedForm = realm.create('Form__c', form, 'all');
 			let questionsList = updatedForm.Questions__r;
