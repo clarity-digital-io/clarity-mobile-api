@@ -82,7 +82,6 @@ const prepareForms = (salesforceForms) => {
 			Status__c: form.forms__Status__c,
 			CreatedDate: form.CreatedDate,
 			Multi_Page__c: form.forms__Multi_Page__c,
-			Limit__c: form.forms__Limit__c,
 			Multi_Page_Val__c: form.forms__Multi_Page_Val__c,
 			Multi_Page_Info__c: form.forms__Multi_Page_Info__c
 		};
