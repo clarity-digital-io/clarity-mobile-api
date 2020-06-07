@@ -71,9 +71,9 @@ const openRealm = async (organizationId) => {
 
 }
 
-const prepareForms = (forms) => {
+const prepareForms = (salesforceForms) => {
 
-	const forms = forms.map(obj => {
+	const forms = salesforceForms.map(obj => {
 
 		let form = obj.form;
 		let questions = obj.questions; 
