@@ -74,7 +74,7 @@ const prepareForms = (salesforceForms) => {
 	const forms = salesforceForms.reduce((accum, obj) => {
 
 		let { form, questions } = obj;
-
+		console.log('form', form); 
 		let nForm = {
 			Id: form.Id,
 			Name: form.Name,
