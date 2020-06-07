@@ -109,7 +109,7 @@ const prepareForms = (salesforceForms) => {
 		preparedForm['questions'] = nQuestions; 
 
 		accum = accum.concat(preparedForm);
-
+		console.log('accum', accum); 
 		return accum; 
 
 	}, [{ form: {}, questions: [] }])
