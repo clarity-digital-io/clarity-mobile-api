@@ -24,9 +24,9 @@ router.post('/', async (req, res) => {
 
 	const realm = await openRealm(data.organizationId);
 	
-	const forms = prepareForms(req.body.forms); 
+	const { forms, questions } = prepareForms(req.body.forms); 
 
-	const status = await sync(realm);
+	const status = await sync(realm, forms, questions);
 
 	console.log('return name of realm'); 
 	console.log('close realm after syncing and start new worker that listens to this realm');
@@ -76,32 +76,65 @@ const prepareForms = (salesforceForms) => {
 	const forms = salesforceForms.map(obj => {
 
 		let form = obj.form;
-		let questions = obj.questions; 
-		console.log(form)
+
+		let questions = obj.questions.map(question => {
+			return {
+				Id: question.Id,
+				Name: question.Name ? question.Name : ''
+			};
+		}); 
+	
 		return {
 			Id: form.Id,
 			Name: form.Name ? form.Name : '',
-			Title__c: form.forms__Title__c ? form.forms__Title__c : '',
+			Title__c: form.forms__Title__c ? form.forms__Title__c : ''
 		};
 
-	})
+	});
+
+
+	const forms = salesforceForms.reduce((accum, { form, questions }) => {
+
+		let form = {
+			Id: form.Id,
+			Name: form.Name ? form.Name : '',
+			Title__c: form.forms__Title__c ? form.forms__Title__c : ''
+		};
+
+		let questions = questions.map(question => {
+			return {
+				Id: question.Id
+			}
+		});
+
+		let currentForms = accum['forms'];
+		let currentQuestions = accum['questions'];
+
+		accum['forms'] = currentForms.concat(form);
+		accum['questions'] = currentQuestions.concat(questions); 
+
+		return accum; 
+
+	}, { forms: [], questions: [] })
+	
 
 	return forms; 
 }
 
-const sync = async(realm) => {
+const sync = async(realm, forms, questions) => {
 
 	realm.write(() => {
 
-		realm.create('Response__c', { 
-			Id: 'responseId',
-			Name: 'test', 
-			Completion__c: false,
-			Status__c: 'test',
-			Submitted_Date__c: new Date(), 
-			UUID__c: 'responseId',
-			Form__c: 'form.Id',
-			Answers__r: []
+		forms.forEach(form => {
+
+			realm.create('Form__c', form);
+
+		});
+
+		questions.forEach(question => {
+
+			realm.create('Question__c', question);
+
 		});
 
 	});
