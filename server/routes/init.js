@@ -76,20 +76,20 @@ const sync = async(realm) => {
 
 	realm.write(() => {
 
-	 realm.create('Response__c', { 
-		 Id: 'responseId',
-		 Name: 'test', 
-		 Completion__c: false,
-		 Status__c: 'test',
-		 Submitted_Date__c: new Date(), 
-		 UUID__c: 'responseId',
-		 Form__c: 'form.Id',
-		 Answers__r: []
-	 });
+		realm.create('Response__c', { 
+			Id: 'responseId',
+			Name: 'test', 
+			Completion__c: false,
+			Status__c: 'test',
+			Submitted_Date__c: new Date(), 
+			UUID__c: 'responseId',
+			Form__c: 'form.Id',
+			Answers__r: []
+		});
 
-	 realm.close(); 
+	});
 
- });
+ realm.close(); 
 
 }
 
