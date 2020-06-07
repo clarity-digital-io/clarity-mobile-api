@@ -32,7 +32,7 @@ router.post('/', async (req, res) => {
 
 	console.log('return name of realm'); 
 	console.log('close realm after syncing and start new worker that listens to this realm');
-	return res.send('Received a POST HTTP method');
+	res.send('Received a POST HTTP method');
 	
 });
 
