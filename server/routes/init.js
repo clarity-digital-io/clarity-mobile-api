@@ -38,20 +38,4 @@ const verifyOrganizationAccess = async (body, params) => {
 
 }
 
-const verify = async (token, {code}, companyId) => {
-
-	try {
-			
-			console.log(data);
-			const id = await save(token, data, companyId, 'Salesforce'); 
-
-			return id;
-
-	} catch (error) {
-			console.log(error);
-			throw new Error(error)
-	}
-
-}
-
 export default router;
