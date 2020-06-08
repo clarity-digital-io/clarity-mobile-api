@@ -28,7 +28,7 @@ router.post('/', async (req, res) => {
 
 	const status = await sync(realm, forms);
 
-	const accessGranted = await grantUserAccess(); 
+	const accessGranted = await grantUserAccess(data.organizationId); 
 
 	res.send.status(201).send('Successful syncing of Forms!');
 	
@@ -147,7 +147,7 @@ const sync = async(realm, forms) => {
 
 const grantUserAccess = async (organization_id) => {
 	let user = Realm.Sync.User.current;
-	return user.applyPermissions({ userId: 'salesforce-sandbox_0058A000004a1kfQAA' }, `/${organization_id}`, 'read')
+	return user.applyPermissions({ userId: 'salesforce-sandbox_0058A000004a1kfQAA' }, `/${organization_id}/forms`, 'read')
   .then(permissionChange => {
 		// an object with the applied changes and its metadata
 		console.log('permissionChange', permissionChange)
