@@ -3,8 +3,8 @@ import axios from 'axios';
 import Realm from 'realm';
 import { FormSchema, ResponseSchema, QuestionSchema } from '../schema'; 
 
-const SERVER_URL = 'https://clarity-forms-dev.us2a.cloud.realm.io';
-const REALM_URL = 'realms://clarity-forms-dev.us2a.cloud.realm.io';
+const SERVER_URL = 'https://clarity-forms-dev.us1a.cloud.realm.io';
+const REALM_URL = 'realms://clarity-forms-dev.us1a.cloud.realm.io';
 
 const grant_type = 'password';     
 const client_id = '3MVG9Z8h6Bxz0zc4V._snL15FoFtwlrYRmvezul8wMJk0jx5CqffMMlS0afWQIQ9clkd1mZOxy.j6DTR4p7m9'; 
