@@ -28,7 +28,9 @@ router.post('/', async (req, res) => {
 
 	const status = await sync(realm, forms);
 
-	res.send('Received a POST HTTP method');
+	const accessGranted = await grantUserAccess(); 
+
+	res.send.status(201).send('Successful syncing of Forms!');
 	
 });
 
@@ -50,7 +52,7 @@ const openRealm = async (organizationId) => {
 	try {
 
 		const adminUser = await Realm.Sync.User.login(SERVER_URL, Realm.Sync.Credentials.nickname('realm-admin', true));
-		const config = { 	sync: { user: adminUser, url: REALM_URL + `/${organizationId}/forms`, fullSynchronization: true, validate_ssl: false },  schema: [FormSchema, QuestionSchema] };
+		const config = { 	sync: { user: adminUser, url: REALM_URL + `/${organizationId}/`, fullSynchronization: true, validate_ssl: false },  schema: [FormSchema, QuestionSchema] };
 
 		return Realm.open(config)
 			.progress((transferred, transferable) => {
@@ -143,4 +145,17 @@ const sync = async(realm, forms) => {
 
 }
 
+const grantUserAccess = async (organization_id) => {
+	let user = Realm.Sync.User.current;
+	return user.applyPermissions({ userId: 'salesforce-sandbox_0058A000004a1kfQAA' }, `/${organization_id}`, 'read')
+  .then(permissionChange => {
+		// an object with the applied changes and its metadata
+		console.log('permissionChange', permissionChange)
+		return 
+  })
+  .catch(error => {
+		console.log('grantGlobalRealmPermissions', error)
+
+  });
+}
 export default router;
