@@ -16,7 +16,7 @@ var handleChange = async function (changeEvent) {
   var forms = realm.objects('Form__c');
   var formIndexes = changeEvent.changes.Form__c.insertions;
 
-	console.log('userId', formIndexes); 
+	console.log('userId', forms, formIndexes); 
 	console.log('testing if it disconnects');
 }
 
