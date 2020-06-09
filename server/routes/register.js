@@ -25,7 +25,7 @@ const openRealms = async (organizationId, users) => {
 	try {
 		const adminUser = await Realm.Sync.User.login(SERVER_URL, Realm.Sync.Credentials.nickname('realm-admin', true));
 
-		for(user in users) {
+		for(let user in users) {
 			console.log('user', user); 
 			let responses = users[user];
 			const config = { sync: { user: adminUser, url: REALM_URL + `/salesforce-sandbox_${user}/user`, fullSynchronization: true, validate_ssl: false },  schema: [ResponseSchema, AnswerSchema] };
