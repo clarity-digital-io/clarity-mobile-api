@@ -30,6 +30,7 @@ const openRealms = async (users) => {
 		for(let index = 0; index < users.length; index++) {
 			const config = { sync: { user: adminUser, url: REALM_URL + `/${users[index]}/user`, fullSynchronization: true, validate_ssl: false },  schema: [ResponseSchema, AnswerSchema] };
 			const realm = await Realm.open(config);	
+			const permissionChange = await adminUser.applyPermissions({ userId: users[index] }, `/${users[index]}/user`, 'admin');
 			//save user data in the future
 			userRealms.push(users[index]);
 			realm.close(); 	
