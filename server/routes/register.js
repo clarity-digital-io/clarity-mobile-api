@@ -7,8 +7,8 @@ const REALM_URL = 'realms://clarity-forms-dev.us1a.cloud.realm.io';
 
 var router = express.Router();
 
-router.post('/', async (req, res) => {
-	console.log('req', req.param); 
+router.post('/:organizationId', async (req, res) => {
+	console.log('req', req.params, req.params.organizationId); 
 	//const realm = await openRealm(req.body.organizationId);
 	
 	//const accessGranted = await grantUsersAccess(req.body.users, req.body.organizationId); 
