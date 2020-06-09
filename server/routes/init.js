@@ -88,7 +88,6 @@ const prepareForms = (salesforceForms) => {
 		};
 
 		let nQuestions = questions.map(question => {
-			console.log('question', question);
 			return {
 				Id: question.Id,
 				Name: question.Name, 
@@ -130,13 +129,10 @@ const sync = async(realm, forms) => {
 			let updatedForm = realm.create('Form__c', form, 'all');
 			let questionsList = updatedForm.Questions__r;
 			if(questionsList.length > 0) {
-				console.log('delete');
 				realm.delete(questionsList);
 			}
 			questions.forEach(question => {
-				console.log('insert', question); 
 				questionsList.push(question); 
-	
 			});
 
 		});
