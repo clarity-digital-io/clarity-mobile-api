@@ -12,8 +12,6 @@ router.post('/:organizationId', async (req, res) => {
 	let organizationId = req.params.organizationId;
 
 	const userRealms = await openRealms(organizationId, req.body);
-	console.log(organizationId, req.body)
-	//const accessGranted = await grantUsersAccess(req.body.users, req.body.organizationId); 
 
 	res.status(201).send('Successful syncing of Users!');
 	
