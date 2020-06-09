@@ -17,7 +17,9 @@ var handleChange = async function (changeEvent) {
   var formIndexes = changeEvent.changes.Form__c.insertions;
 
 	for (let formIndex of formIndexes) {
-		console.log('formIndex', formIndex); 
+		var form = formIndexes[formIndex];
+
+		console.log('formIndex', formIndex, form); 
 	}
 	
 	console.log('userId', forms, formIndexes); 
