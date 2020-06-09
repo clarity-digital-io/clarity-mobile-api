@@ -8,9 +8,11 @@ const REALM_URL = 'realms://clarity-forms-dev.us1a.cloud.realm.io';
 var router = express.Router();
 
 router.post('/:organizationId', async (req, res) => {
-	console.log('req', req.params, req.params.organizationId); 
-	//const realm = await openRealm(req.body.organizationId);
-	
+
+	let organizationId = req.params.organizationId;
+
+	//const realm = await openRealm(organizationId);
+	console.log(organizationId, req.body)
 	//const accessGranted = await grantUsersAccess(req.body.users, req.body.organizationId); 
 
 	res.status(201).send('Successful syncing of Users!');

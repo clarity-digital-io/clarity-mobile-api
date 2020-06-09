@@ -29,7 +29,6 @@ var handleChange = async function (changeEvent) {
 async function main() {
 
 		//will read / subscribe to clarityforce.salesforce.com for mobile clients
-
 		try {
 			const adminUser = await Realm.Sync.User.login(SERVER_URL, Realm.Sync.Credentials.nickname('realm-admin', true));
 			const config = { serverUrl: REALM_URL, adminUser: adminUser, filterRegex: '/.*/' }

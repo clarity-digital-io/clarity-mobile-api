@@ -29,6 +29,9 @@ New app install => open realm form /userId/
 Response submission
 -- Listener pushes to Salesforce
 
+Salesforce changes
+-- Push on trigger
+
 Future requirement 
 -- Changes in lightning component push change to realm object similar to INIT
 
