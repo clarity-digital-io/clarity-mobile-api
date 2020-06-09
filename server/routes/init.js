@@ -93,6 +93,7 @@ const prepareForms = (salesforceForms) => {
 				Id: question.Id,
 				Name: question.Name, 
 				Form__c: question.forms__Form__c,
+				Type__c: question.forms__Type__c,
 				FreeText_Type__c: question.forms__FreeText_Type__c,
 				Logic__c: question.forms__Logic__c,
 				Max_Length__c: question.forms__Max_Length__c,
@@ -102,7 +103,6 @@ const prepareForms = (salesforceForms) => {
 				Page__c: question.forms__Page__c,
 				Required__c: question.forms__Required__c,
 				Title__c: question.forms__Title__c,
-				Type__c: question.forms__Type__c,
 			}
 		});
 
