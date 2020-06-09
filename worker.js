@@ -1,7 +1,7 @@
 const Realm = require('realm'); 
 
 // the URL to the Realm Object Server
-var SERVER_URL = '//clarity-forms-development.us2a.cloud.realm.io';
+var SERVER_URL = '//clarity-forms-dev.us1a.cloud.realm.io';
 
 var NOTIFIER_PATH = '/';
 

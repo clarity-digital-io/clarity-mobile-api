@@ -1,6 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import initRouter from './routes/init';
+import responseRouter from './routes/response';
 import formsRouter from './routes/forms';
 import { main } from './realm';
 
@@ -12,6 +13,7 @@ let realm;
 app.use(bodyParser.json())
 
 app.use('/:organizationId/init', initRouter);
+app.use('/:organizationId/response', responseRouter);
 app.use('/:organizationId/forms', formsRouter);
 
 app.listen(PORT, () =>
