@@ -28,10 +28,11 @@ const openRealms = async (users) => {
 		const adminUser = await Realm.Sync.User.login(SERVER_URL, Realm.Sync.Credentials.nickname('realm-admin', true));
 
 		for(let index = 0; index < users.length; index++) {
-			const config = { sync: { user: adminUser, url: REALM_URL + `/${users[index]}/user`, fullSynchronization: true, validate_ssl: false },  schema: [ResponseSchema, AnswerSchema] };
+			const config = { sync: { user: adminUser, url: REALM_URL + `/salesforce-sandbox_${users[index]}/user`, fullSynchronization: true, validate_ssl: false },  schema: [ResponseSchema, AnswerSchema] };
 			const realm = await Realm.open(config);	
 			const permissionChange = await adminUser.applyPermissions({ userId: users[index] }, `/${users[index]}/user`, 'admin');
 			//save user data in the future
+			//save responses to user realm
 			userRealms.push(users[index]);
 			realm.close(); 	
 		}
