@@ -39,6 +39,8 @@ const openRealms = async (users) => {
 		console.log('error', error);
 	}
 
+	return userRealms;
+
 }
 
 const grantUsersAccess = async (users, organization_id) => {
