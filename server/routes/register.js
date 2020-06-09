@@ -30,7 +30,7 @@ const openRealms = async (organizationId, users) => {
 			let responses = users[user];
 			const config = { sync: { user: adminUser, url: REALM_URL + `/salesforce-sandbox_${user}/user`, fullSynchronization: true, validate_ssl: false },  schema: [ResponseSchema, AnswerSchema] };
 			const realm = await Realm.open(config);	
-			const permissionUserChange = await adminUser.applyPermissions({ userId: user }, `/${user}/user`, 'admin');
+			const permissionUserChange = await adminUser.applyPermissions({ userId: user }, `/salesforce-sandbox_${user}/user`, 'admin');
 			const permissionFormsChange = await adminUser.applyPermissions({ userId: user }, `/${organizationId}/forms`, 'read');
 			const realmSync = await sync(realm, responses)
 			userRealms.push(user);
