@@ -1,7 +1,8 @@
 const Realm = require('realm'); 
 
 // the URL to the Realm Object Server
-var SERVER_URL = '//clarity-forms-dev.us1a.cloud.realm.io';
+const SERVER_URL = 'https://clarity-forms-dev.us1a.cloud.realm.io';
+const REALM_URL = 'realms://clarity-forms-dev.us1a.cloud.realm.io';
 
 var NOTIFIER_PATH = '/';
 
@@ -21,8 +22,9 @@ async function main() {
 		//will read / subscribe to clarityforce.salesforce.com for mobile clients
 
 		try {
-			const adminUser = await Realm.Sync.User.login(`https:${SERVER_URL}`, Realm.Sync.Credentials.nickname('realm-admin', true));
-			Realm.Sync.addListener(`realms:${SERVER_URL}`, adminUser, NOTIFIER_PATH, 'change', handleChange);
+			const adminUser = await Realm.Sync.User.login(SERVER_URL, Realm.Sync.Credentials.nickname('realm-admin', true));
+			const config = { serverUrl: REALM_URL, adminUser: adminUser, filterRegex: '/.*/' }
+			Realm.Sync.addListener(config, 'change', handleChange)
 		} catch (error) {
 			console.log('error', error);
 		}
