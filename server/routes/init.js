@@ -30,7 +30,7 @@ router.post('/', async (req, res) => {
 
 	const accessGranted = await grantUserAccess(data.organizationId); 
 
-	res.send.status(201).send('Successful syncing of Forms!');
+	res.status(201).send('Successful syncing of Forms!');
 	
 });
 
