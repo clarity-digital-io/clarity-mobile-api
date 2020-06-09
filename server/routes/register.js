@@ -1,6 +1,6 @@
 import express from 'express';
 import Realm from 'realm';
-import { FormSchema, QuestionSchema } from '../schema'; 
+import { ResponseSchema, AnswerSchema } from '../schema'; 
 
 const SERVER_URL = 'https://clarity-forms-dev.us1a.cloud.realm.io';
 const REALM_URL = 'realms://clarity-forms-dev.us1a.cloud.realm.io';
@@ -11,7 +11,7 @@ router.post('/:organizationId', async (req, res) => {
 
 	let organizationId = req.params.organizationId;
 
-	//const realm = await openRealm(organizationId);
+	const userRealms = await openRealms(req.body);
 	console.log(organizationId, req.body)
 	//const accessGranted = await grantUsersAccess(req.body.users, req.body.organizationId); 
 
@@ -20,24 +20,21 @@ router.post('/:organizationId', async (req, res) => {
 });
 
 //separate as a helper/service
-const openRealm = async (organizationId) => {
+const openRealms = async (users) => {
 
+	let userRealms = [];
+	
 	try {
-
 		const adminUser = await Realm.Sync.User.login(SERVER_URL, Realm.Sync.Credentials.nickname('realm-admin', true));
-		const config = { 	sync: { user: adminUser, url: REALM_URL + `/${organizationId}/forms`, fullSynchronization: true, validate_ssl: false },  schema: [FormSchema, QuestionSchema] };
 
-		return Realm.open(config)
-			.progress((transferred, transferable) => {
-				console.log('progress', transferred, transferable)
-			})
-			.then(realm => {
-				return realm; 
-			})
-			.catch((e) => {
-				console.log('trying to open', e);
-			});
-			
+		for(let index = 0; index < users.length; index++) {
+			const config = { sync: { user: adminUser, url: REALM_URL + `/${users[index]}/user`, fullSynchronization: true, validate_ssl: false },  schema: [ResponseSchema, AnswerSchema] };
+			const realm = await Realm.open(config);	
+			//save user data in the future
+			userRealms.push(users[index]);
+			realm.close(); 	
+		}
+
 	} catch (error) {
 		console.log('error', error);
 	}

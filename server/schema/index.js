@@ -37,3 +37,46 @@ export const QuestionSchema = {
 		Prefill_Type__c: 'data?'
   }
 };
+
+export const ResponseSchema = {
+	name: 'Response__c',
+	primaryKey: 'Id',
+  properties: {
+		Id: 'string',
+		Name: 'string', 
+		Completion__c: 'bool',
+		Status__c: 'string',
+		Submitted_Date__c: 'date', 
+		UUID__c: 'string',
+		Form__c: 'string',
+    Answers__r: 'Answer__c[]'
+  },
+};
+
+export const AnswerSchema = {
+	name: 'Answer__c',
+	primaryKey: 'Id',
+	properties: {
+		Id: 'string',
+		Name: 'string', 
+		Answer__c: 'string',
+		Response__c: 'string',
+		ContentDocument__c: 'string',
+		ContentVersion__c: 'string',
+		Date_Answer__c: 'string',
+		Record__c: 'string'
+	}
+}
+
+export const ProfileSchema = {
+	name: 'Profile',
+	primaryKey: 'Id', //userId
+	properties: {
+		id: 'string',
+		email: 'string', 
+		access_token: 'string',
+		full_name: 'string',
+		avatar: 'string',
+		last_sync: 'date'
+	}
+}
