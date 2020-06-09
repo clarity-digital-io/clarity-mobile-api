@@ -1,11 +1,11 @@
 import express from 'express';
 import axios from 'axios';
 import Realm from 'realm';
-import { FormSchema, ResponseSchema, QuestionSchema } from '../schema'; 
+import { FormSchema, QuestionSchema } from '../schema'; 
 
 const SERVER_URL = 'https://clarity-forms-dev.us1a.cloud.realm.io';
 const REALM_URL = 'realms://clarity-forms-dev.us1a.cloud.realm.io';
-
+// Clarity Managment Connected App
 const grant_type = 'password';     
 const client_id = '3MVG9Z8h6Bxz0zc4V._snL15FoFtwlrYRmvezul8wMJk0jx5CqffMMlS0afWQIQ9clkd1mZOxy.j6DTR4p7m9'; 
 const client_secret = '00A082693387D6718AC18AEA088DC459F656E945B96FFE219EBF40C2D9345136'; 
@@ -156,4 +156,5 @@ const grantUserAccess = async (organization_id) => {
 
   });
 }
+
 export default router;
