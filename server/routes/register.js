@@ -47,6 +47,7 @@ const openRealms = async (organizationId, users) => {
 const prepareResponses = (salesforceResponses) => {
 
 	return salesforceResponses.map(response => {
+		console.log('response', response); 
 		return {
 			Id: response.Id, 
 			Name: response.Name, 
