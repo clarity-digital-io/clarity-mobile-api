@@ -65,6 +65,7 @@ const sync = async (realm, responses) => {
 	realm.write(() => {
 
 		responses.forEach(preparedResponse => {
+			console.log(preparedResponse)
 
 			let updatedResponse = realm.create('Response__c', preparedResponse, 'all');
 
