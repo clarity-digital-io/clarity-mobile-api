@@ -46,7 +46,7 @@ export const ResponseSchema = {
 		Name: 'string', 
 		Completion__c: 'bool',
 		Status__c: 'string',
-		Submitted_Date__c: 'date', 
+		Submitted_Date__c: 'data?', 
 		UUID__c: 'string',
 		Form__c: 'string',
     Answers__r: 'Answer__c[]'
