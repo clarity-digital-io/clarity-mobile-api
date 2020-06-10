@@ -2,8 +2,8 @@ import express from 'express';
 import Realm from 'realm';
 import { ResponseSchema, AnswerSchema } from '../schema'; 
 
-const SERVER_URL = 'https://clarity-forms-dev.us1a.cloud.realm.io';
-const REALM_URL = 'realms://clarity-forms-dev.us1a.cloud.realm.io';
+const SERVER_URL = 'https://forms-dev.us1a.cloud.realm.io';
+const REALM_URL = 'realms://forms-dev.us1a.cloud.realm.io';
 
 var router = express.Router();
 
