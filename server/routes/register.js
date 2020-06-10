@@ -50,9 +50,9 @@ const prepareResponses = (salesforceResponses) => {
 		return {
 			Id: response.Id, 
 			Name: response.Name, 
-			Form__c: response.Form__c, 
-			Status__c: response.Status__c, 
-			Submitted_Date__c: response.Submitted_Date__c, 
+			Form__c: response.forms__Form__c, 
+			Status__c: response.forms__Status__c, 
+			Submitted_Date__c: response.forms__Submitted_Date__c, 
 			UUID__c: response.Id, 
 			Completion__c: true
 		}
