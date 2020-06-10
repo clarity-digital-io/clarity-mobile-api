@@ -26,17 +26,14 @@ const openRealms = async (organizationId, users) => {
 		const adminUser = await Realm.Sync.User.login(SERVER_URL, Realm.Sync.Credentials.nickname('realm-admin', true));
 
 		for(let user in users) {
-			console.log('user', user); 
-			let responses = users[user];
 			const config = { sync: { user: adminUser, url: REALM_URL + `/salesforce-sandbox_${user}/user`, fullSynchronization: true, validate_ssl: false },  schema: [ResponseSchema, AnswerSchema] };
 			const realm = await Realm.open(config);	
-			const permissionUserChange = await adminUser.applyPermissions({ userId: user }, `/salesforce-sandbox_${user}/user`, 'admin');
-			const permissionFormsChange = await adminUser.applyPermissions({ userId: user }, `/${organizationId}/forms`, 'read');
-			const realmSync = await sync(realm, responses)
+			await adminUser.applyPermissions({ userId: user }, `/salesforce-sandbox_${user}/user`, 'admin');
+			await adminUser.applyPermissions({ userId: user }, `/${organizationId}/forms`, 'read');
+			const responses = prepareResponses(users[user]); 
+			await sync(realm, responses);
 			userRealms.push(user);
-
 			realm.close(); 	
-
 		}
 	
 	} catch (error) {
@@ -47,14 +44,29 @@ const openRealms = async (organizationId, users) => {
 
 }
 
+const prepareResponses = (salesforceResponses) => {
+
+	return salesforceResponses.map(response => {
+		return {
+			Id: response.Id, 
+			Name: response.Name, 
+			Form__c: response.Form__c, 
+			Status__c: response.Status__c, 
+			Submitted_Date__c: response.Submitted_Date__c, 
+			UUID__c: response.Id, 
+			Completion__c: true
+		}
+	});
+
+}
 
 const sync = async (realm, responses) => {
 
 	realm.write(() => {
 
 		responses.forEach(preparedResponse => {
-			console.log('preparedResponse', preparedResponse)
-			//let updatedResponse = realm.create('Response__c', form, 'all');
+
+			let updatedResponse = realm.create('Response__c', preparedResponse, 'all');
 
 		});
 
