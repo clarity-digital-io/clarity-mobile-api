@@ -86,6 +86,7 @@ const prepareForms = (salesforceForms) => {
 		};
 
 		let nQuestions = questions.map(question => {
+			console.log('question', question);
 			return {
 				Id: question.Id,
 				Name: question.Name, 

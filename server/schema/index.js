@@ -38,6 +38,15 @@ export const QuestionSchema = {
   }
 };
 
+export const QuestionOptionSchema = {
+	name: 'Question_Option__c',
+	primaryKey: 'Id',
+  properties: {
+		Id: 'string',
+		Name: 'string'
+  }
+};
+
 export const ResponseSchema = {
 	name: 'Response__c',
 	primaryKey: 'Id',
