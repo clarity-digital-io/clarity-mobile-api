@@ -35,8 +35,9 @@ export const QuestionSchema = {
 		FreeText_Type__c: {type: 'string', default: ''},
 		Record_Group__c: 'data?',
 		Prefill_Type__c: 'data?',
-		Question_Options__r: 'Question_Option__c[]'
-  }
+		Question_Options__r: 'Question_Option__c[]',
+		Question_Criteria__r: 'Question_Criteria__c[]'
+	}
 };
 
 export const QuestionOptionSchema = {
