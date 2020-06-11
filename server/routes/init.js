@@ -108,7 +108,7 @@ const prepareForms = (salesforceForms) => {
 					return {
 						Id: criteria.Id,
 						Name: criteria.Name,
-						Question__c: option.forms__Question__c,
+						Question__c: criteria.forms__Question__c,
 						Field_Type__c: criteria.forms__Field_Type__c,
 						Field__c: criteria.forms__Field__c,
 						Operator__c: criteria.forms__Operator__c,
