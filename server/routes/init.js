@@ -99,7 +99,6 @@ const prepareForms = (salesforceForms) => {
 					}
 				});
 				nQuestionOptions.set(question.Id, options);
-				console.log('nQuestionCriteria', nQuestionCriteria, options); 
 			}
 
 			if(question.hasOwnProperty('forms__Question_Criteria__r')) {
@@ -154,7 +153,6 @@ const sync = async(realm, forms) => {
 			let questions = preparedForm.questions;
 			let questionoptions = preparedForm.questionoptions;
 			let questioncriteria = preparedForm.questioncriteria;
-			console.log('questionoptions', questionoptions); 
 			let updatedForm = realm.create('Form__c', form, 'all');
 			let questionsList = updatedForm.Questions__r;
 
@@ -168,9 +166,9 @@ const sync = async(realm, forms) => {
 
 				let questionOptionsList = question.Question_Options__r;
 				//let questionCriteriaList = question.Question_Criteria__r;
+				console.log('questionOptionsList', questionOptionsList); 
 
 				let actualQuestionOptions = questionoptions.has(question.Id) ? questionoptions.get(question.Id) : []
-				console.log('actualQuestionOptions', actualQuestionOptions); 
 				actualQuestionOptions.forEach(option => {
 					questionOptionsList.push(option); 
 				});
