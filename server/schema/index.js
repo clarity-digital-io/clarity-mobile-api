@@ -34,7 +34,8 @@ export const QuestionSchema = {
 		Logic__c: {type: 'string', default: ''},
 		FreeText_Type__c: {type: 'string', default: ''},
 		Record_Group__c: 'data?',
-		Prefill_Type__c: 'data?'
+		Prefill_Type__c: 'data?',
+		Question_Options__r: 'Question_Option__c[]'
   }
 };
 
@@ -43,7 +44,8 @@ export const QuestionOptionSchema = {
 	primaryKey: 'Id',
   properties: {
 		Id: 'string',
-		Name: 'string'
+		Name: 'string',
+		Label__c: 'string'
   }
 };
 

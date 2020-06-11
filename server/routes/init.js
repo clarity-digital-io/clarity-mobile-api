@@ -1,7 +1,7 @@
 import express from 'express';
 import axios from 'axios';
 import Realm from 'realm';
-import { FormSchema, QuestionSchema } from '../schema'; 
+import { FormSchema, QuestionSchema, QuestionOptionSchema } from '../schema'; 
 
 const SERVER_URL = 'https://forms-dev.us1a.cloud.realm.io';
 const REALM_URL = 'realms://forms-dev.us1a.cloud.realm.io';
@@ -50,7 +50,7 @@ const openRealm = async (organizationId) => {
 	try {
 
 		const adminUser = await Realm.Sync.User.login(SERVER_URL, Realm.Sync.Credentials.nickname('realm-admin', true));
-		const config = { 	sync: { user: adminUser, url: REALM_URL + `/${organizationId}/forms`, fullSynchronization: true, validate_ssl: false },  schema: [FormSchema, QuestionSchema] };
+		const config = { 	sync: { user: adminUser, url: REALM_URL + `/${organizationId}/forms`, fullSynchronization: true, validate_ssl: false },  schema: [FormSchema, QuestionSchema, QuestionOptionSchema] };
 
 		return Realm.open(config)
 			.progress((transferred, transferable) => {
@@ -87,8 +87,26 @@ const prepareForms = (salesforceForms) => {
 
 		let nQuestions = questions.map(question => {
 			
+			let nQuestionOptions, nQuestionCriteria;
+
 			if(question.hasOwnProperty('forms__Question_Options__r')) {
-				console.log( question.forms__Question_Options__r.records );
+				nQuestionOptions = question.forms__Question_Options__r.records.map(option => {
+					return {
+						Id: option.Id,
+						Name: option.Name,
+						Label__c: option.forms__Label__c
+					}
+				});
+			}
+
+			if(question.hasOwnProperty('forms__Question_Criteria__r')) {
+				console.log( question.forms__Question_Criteria__r.records );
+				nQuestionCriteria = question.forms__Question_Criteria__r.records.map(criteria => {
+					return {
+						Id: criteria.Id,
+						Name: criteria.Name
+					}
+				});
 			}
 
 			return {
@@ -112,6 +130,8 @@ const prepareForms = (salesforceForms) => {
 
 		preparedForm['form'] = nForm;
 		preparedForm['questions'] = nQuestions; 
+		preparedForm['questionoptions'] = nQuestionOptions; 
+		preparedForm['questioncriteria'] = nQuestionCriteria; 
 
 		accum = accum.concat(preparedForm);
 		return accum; 
@@ -128,16 +148,25 @@ const sync = async(realm, forms) => {
 		forms.forEach(preparedForm => {
 
 			let form = preparedForm.form; 
-			let questions = preparedForm.questions; 
+			let questions = preparedForm.questions;
+			let questionoptions = preparedForm.questionoptions;
+
 			let updatedForm = realm.create('Form__c', form, 'all');
 			let questionsList = updatedForm.Questions__r;
 			if(questionsList.length > 0) {
 				realm.delete(questionsList);
 			}
 			questions.forEach(question => {
-				questionsList.push(question); 
-			});
 
+				questionsList.push(question); 
+
+				let questionOptionsList = question.Question_Options__r;
+
+				questionoptions.forEach(option => {
+					questionOptionsList.push(option); 
+				});
+
+			});
 		});
 
 	});
