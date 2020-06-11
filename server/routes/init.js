@@ -98,7 +98,7 @@ const prepareForms = (salesforceForms) => {
 						Label__c: option.forms__Label__c
 					}
 				});
-				nQuestionCriteria.set(question.Id, options);
+				nQuestionOptions.set(question.Id, options);
 				console.log('nQuestionCriteria', nQuestionCriteria, options); 
 			}
 
@@ -154,7 +154,7 @@ const sync = async(realm, forms) => {
 			let questions = preparedForm.questions;
 			let questionoptions = preparedForm.questionoptions;
 			let questioncriteria = preparedForm.questioncriteria;
-
+			console.log('questionoptions', questionoptions); 
 			let updatedForm = realm.create('Form__c', form, 'all');
 			let questionsList = updatedForm.Questions__r;
 
