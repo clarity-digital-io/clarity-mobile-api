@@ -99,6 +99,7 @@ const prepareForms = (salesforceForms) => {
 					}
 				});
 				nQuestionCriteria.set(question.Id, options);
+				console.log('nQuestionCriteria', nQuestionCriteria, options); 
 			}
 
 			if(question.hasOwnProperty('forms__Question_Criteria__r')) {
