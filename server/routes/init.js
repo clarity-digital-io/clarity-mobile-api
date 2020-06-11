@@ -85,29 +85,30 @@ const prepareForms = (salesforceForms) => {
 			Multi_Page_Info__c: form.forms__Multi_Page_Info__c,
 		};
 
+		let nQuestionOptions = new Map();
+		let nQuestionCriteria = new Map();
+		
 		let nQuestions = questions.map(question => {
-			
-			let nQuestionOptions = [];
-			let nQuestionCriteria = [];
 
 			if(question.hasOwnProperty('forms__Question_Options__r')) {
-				nQuestionOptions = question.forms__Question_Options__r.records.map(option => {
+				let options = question.forms__Question_Options__r.records.map(option => {
 					return {
 						Id: option.Id,
 						Name: option.Name,
 						Label__c: option.forms__Label__c
 					}
 				});
+				nQuestionCriteria.put(question.Id, options);
 			}
 
 			if(question.hasOwnProperty('forms__Question_Criteria__r')) {
-				console.log( question.forms__Question_Criteria__r.records );
-				nQuestionCriteria = question.forms__Question_Criteria__r.records.map(criteria => {
+				let criteria = question.forms__Question_Criteria__r.records.map(criteria => {
 					return {
 						Id: criteria.Id,
 						Name: criteria.Name
 					}
 				});
+				nQuestionCriteria.put(question.Id, criteria);
 			}
 
 			return {
@@ -151,19 +152,25 @@ const sync = async(realm, forms) => {
 			let form = preparedForm.form; 
 			let questions = preparedForm.questions;
 			let questionoptions = preparedForm.questionoptions;
+			let questioncriteria = preparedForm.questioncriteria;
 
 			let updatedForm = realm.create('Form__c', form, 'all');
 			let questionsList = updatedForm.Questions__r;
+
 			if(questionsList.length > 0) {
 				realm.delete(questionsList);
 			}
+
 			questions.forEach(question => {
 
 				questionsList.push(question); 
 
 				let questionOptionsList = question.Question_Options__r;
+				//let questionCriteriaList = question.Question_Criteria__r;
 
-				questionoptions.forEach(option => {
+				let actualQuestionOptions = questionoptions.has(question.Id) ? questionoptions.get(question.Id) : []
+
+				actualQuestionOptions.forEach(option => {
 					questionOptionsList.push(option); 
 				});
 
