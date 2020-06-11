@@ -12,7 +12,7 @@ let realm;
 
 app.use(bodyParser.json())
 
-app.use('/:organizationId/init', initRouter);
+app.use('/init', initRouter);
 app.use('/register', registerRouter); 
 app.use('/:organizationId/forms', formsRouter);
 
