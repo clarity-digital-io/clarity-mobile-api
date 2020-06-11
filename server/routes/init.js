@@ -98,7 +98,7 @@ const prepareForms = (salesforceForms) => {
 						Label__c: option.forms__Label__c
 					}
 				});
-				nQuestionCriteria.put(question.Id, options);
+				nQuestionCriteria.set(question.Id, options);
 			}
 
 			if(question.hasOwnProperty('forms__Question_Criteria__r')) {
@@ -108,7 +108,7 @@ const prepareForms = (salesforceForms) => {
 						Name: criteria.Name
 					}
 				});
-				nQuestionCriteria.put(question.Id, criteria);
+				nQuestionCriteria.set(question.Id, criteria);
 			}
 
 			return {
