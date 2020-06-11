@@ -86,7 +86,11 @@ const prepareForms = (salesforceForms) => {
 		};
 
 		let nQuestions = questions.map(question => {
-			console.log('question options', question.forms__Question_Options__r.records);
+			
+			if(question.hasOwnProperty('forms__Question_Options__r')) {
+				console.log( question.forms__Question_Options__r.records );
+			}
+
 			return {
 				Id: question.Id,
 				Name: question.Name, 
