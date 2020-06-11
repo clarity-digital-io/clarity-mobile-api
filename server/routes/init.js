@@ -105,10 +105,15 @@ const prepareForms = (salesforceForms) => {
 
 			if(question.hasOwnProperty('forms__Question_Criteria__r')) {
 				let criteria = question.forms__Question_Criteria__r.records.map(criteria => {
-					console.log('criteria', criteria);
 					return {
 						Id: criteria.Id,
-						Name: criteria.Name
+						Name: criteria.Name,
+						Question__c: option.forms__Question__c,
+						Field_Type__c: criteria.forms__Field_Type__c,
+						Field__c: criteria.forms__Field__c,
+						Operator__c: criteria.forms__Operator__c,
+						Type__c: criteria.forms__Type__c,
+						Value__c: criteria.forms__Value__c
 					}
 				});
 				nQuestionCriteria.set(question.Id, criteria);
