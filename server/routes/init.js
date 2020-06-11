@@ -14,9 +14,11 @@ const password = 'Clarity2020!hK0S8pi2pXOQ7tjsADGijhFV';
 
 var router = express.Router();
 
-router.post('/', async (req, res) => {
+router.post('/:organizationId', async (req, res) => {
 
-	const { data } = await verifyOrganizationAccess(req.body, req.params);
+	let organizationId = req.params.organizationId;
+
+	const { data } = await verifyOrganizationAccess(organizationId, req.params);
 
 	if(data.access != 'valid') {
 		return res.status(401).send({ access: false, description: 'No mobile access for Organization.' });
@@ -32,10 +34,9 @@ router.post('/', async (req, res) => {
 	
 });
 
-const verifyOrganizationAccess = async (body, params) => {
+const verifyOrganizationAccess = async (organizationId, params) => {
 
 	try {
-		const organizationId = body.org.Id; 
 		const { data } = await axios.post(`https://test.salesforce.com/services/oauth2/token?grant_type=${grant_type}&client_id=${client_id}&client_secret=${client_secret}&username=${username}&password=${password}`);
 		const response = await axios.post(`https://dream-business-5073-dev-ed.cs40.my.salesforce.com/services/apexrest/Applications/${organizationId}`, {}, { headers: { Authorization: "Bearer " + data.access_token } });
 		return response; 
@@ -169,12 +170,20 @@ const sync = async(realm, forms) => {
 			let newQuestions = realm.objects('Question__c'); //can query for the ones with options here
 
 			newQuestions.forEach(question => {
+
 				let questionOptionsList = question.Question_Options__r;
+				let questionCriteriaList = question.Question_Criteria__r;
 	
 				let actualQuestionOptions = questionoptions.has(question.Id) ? questionoptions.get(question.Id) : [];
 				
 				actualQuestionOptions.forEach(option => {
 					questionOptionsList.push(option); 
+				});
+
+				let actualQuestionCriteria = questioncriteria.has(question.Id) ? questioncriteria.get(question.Id) : [];
+				
+				actualQuestionCriteria.forEach(criteria => {
+					questionCriteriaList.push(criteria); 
 				});
 	
 			});

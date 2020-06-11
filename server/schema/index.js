@@ -45,7 +45,23 @@ export const QuestionOptionSchema = {
   properties: {
 		Id: 'string',
 		Name: 'string',
+		Question__c: 'string',
 		Label__c: 'string'
+  }
+};
+
+export const QuestionCriteriaSchema = {
+	name: 'Question_Criteria__c',
+	primaryKey: 'Id',
+  properties: {
+		Id: 'string',
+		Name: 'string',
+		Question__c: 'string',
+		Field__c: 'string', 
+		Field_Type__c: 'string',
+		Operator__c: 'string',
+		Type__c: 'string',
+		Value__c: 'string'
   }
 };
 
