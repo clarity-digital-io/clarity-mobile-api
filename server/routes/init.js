@@ -181,7 +181,7 @@ const sync = async(realm, forms) => {
 				});
 
 				let actualQuestionCriteria = questioncriteria.has(question.Id) ? questioncriteria.get(question.Id) : [];
-				
+				console.log('actualQuestionCriteria', actualQuestionCriteria);
 				actualQuestionCriteria.forEach(criteria => {
 					questionCriteriaList.push(criteria); 
 				});
