@@ -166,21 +166,20 @@ const sync = async(realm, forms) => {
 
 			});
 
-		});
+			let newQuestions = realm.objects('Question__c'); //can query for the ones with options here
 
-		let questions = realm.objects('Question__c'); //can query for the ones with options here
-
-		questions.forEach(question => {
-			let questionOptionsList = question.Question_Options__r;
-			//let questionCriteriaList = question.Question_Criteria__r;
-			console.log('questionOptionsList', questionOptionsList); 
-
-			let actualQuestionOptions = questionoptions.has(question.Id) ? questionoptions.get(question.Id) : []
-			actualQuestionOptions.forEach(option => {
-				questionOptionsList.push(option); 
+			newQuestions.forEach(question => {
+				let questionOptionsList = question.Question_Options__r;
+	
+				let actualQuestionOptions = questionoptions.has(question.Id) ? questionoptions.get(question.Id) : [];
+				
+				actualQuestionOptions.forEach(option => {
+					questionOptionsList.push(option); 
+				});
+	
 			});
 
-		})
+		});
 
 	});
 
