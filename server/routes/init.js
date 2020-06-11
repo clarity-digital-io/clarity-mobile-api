@@ -169,7 +169,7 @@ const sync = async(realm, forms) => {
 				//let questionCriteriaList = question.Question_Criteria__r;
 
 				let actualQuestionOptions = questionoptions.has(question.Id) ? questionoptions.get(question.Id) : []
-
+				console.log('actualQuestionOptions', actualQuestionOptions); 
 				actualQuestionOptions.forEach(option => {
 					questionOptionsList.push(option); 
 				});
