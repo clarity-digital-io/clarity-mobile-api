@@ -96,6 +96,7 @@ const prepareForms = (salesforceForms) => {
 					return {
 						Id: option.Id,
 						Name: option.Name,
+						Question__c: option.forms__Question__c,
 						Label__c: option.forms__Label__c
 					}
 				});
@@ -103,8 +104,8 @@ const prepareForms = (salesforceForms) => {
 			}
 
 			if(question.hasOwnProperty('forms__Question_Criteria__r')) {
-				console.log('question', question);
 				let criteria = question.forms__Question_Criteria__r.records.map(criteria => {
+					console.log('criteria', criteria);
 					return {
 						Id: criteria.Id,
 						Name: criteria.Name
@@ -182,7 +183,7 @@ const sync = async(realm, forms) => {
 				});
 
 				let actualQuestionCriteria = questioncriteria.has(question.Id) ? questioncriteria.get(question.Id) : [];
-				console.log('actualQuestionCriteria', actualQuestionCriteria);
+
 				actualQuestionCriteria.forEach(criteria => {
 					questionCriteriaList.push(criteria); 
 				});
