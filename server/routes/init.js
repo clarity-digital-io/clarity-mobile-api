@@ -15,9 +15,9 @@ const password = 'Clarity2020!hK0S8pi2pXOQ7tjsADGijhFV';
 var router = express.Router();
 
 router.post('/:organizationId', async (req, res) => {
-
+	
 	let organizationId = req.params.organizationId;
-
+	console.log('organizationId', organizationId); 
 	const { data } = await verifyOrganizationAccess(organizationId, req.params);
 
 	if(data.access != 'valid') {
