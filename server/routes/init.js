@@ -181,14 +181,14 @@ const sync = async(realm, forms) => {
 
 				let questionOptionsList = question.Question_Options__r;
 				let questionCriteriaList = question.Question_Criteria__r;
-	
-				if(questionOptionsList.length > 0) {
-					realm.delete(questionOptionsList);
-				}
+				
+				// if(questionOptionsList.length > 0) {
+				// 	realm.delete(questionOptionsList);
+				// }
 
-				if(questionCriteriaList.length > 0) {
-					realm.delete(questionCriteriaList);
-				}
+				// if(questionCriteriaList.length > 0) {
+				// 	realm.delete(questionCriteriaList);
+				// }
 
 				let actualQuestionOptions = questionoptions.has(question.Id) ? questionoptions.get(question.Id) : [];
 				
