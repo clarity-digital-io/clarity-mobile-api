@@ -161,6 +161,7 @@ const sync = async(realm, forms) => {
 			let questions = preparedForm.questions;
 			let questionoptions = preparedForm.questionoptions;
 			let questioncriteria = preparedForm.questioncriteria;
+			console.log('questioncriteria', questioncriteria); 
 			let updatedForm = realm.create('Form__c', form, 'all');
 			let questionsList = updatedForm.Questions__r;
 
