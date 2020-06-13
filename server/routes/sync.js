@@ -16,6 +16,7 @@ router.post('/:userId', async (req, res) => {
 	//start worker async = on success start return response
 
 	let records = req.body;
+	console.log('records', records); 
 
 	const salesforceRecords = prepare(records); 
 	console.log('salesforceRecords', salesforceRecords); 
