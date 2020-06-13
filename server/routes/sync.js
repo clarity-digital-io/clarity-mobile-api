@@ -19,7 +19,7 @@ router.post('/:userId', async (req, res) => {
 	console.log('records', records); 
 
 
-	const records = prepare(records); 
+	const salesforceRecords = prepare(records); 
 
 	//const realm = await openRealm(userId, schemas);
 	
