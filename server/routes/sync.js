@@ -15,7 +15,7 @@ router.post('/:userId', async (req, res) => {
 	console.log('user', userId); 
 	//start worker async = on success start return response
 
-	let records = req.body.records;
+	let records = req.body;
 	console.log('records', records); 
 
 
