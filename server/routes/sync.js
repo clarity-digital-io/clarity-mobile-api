@@ -16,10 +16,9 @@ router.post('/:userId', async (req, res) => {
 	//start worker async = on success start return response
 
 	let records = req.body;
-	console.log('records', records); 
-
 
 	const salesforceRecords = prepare(records); 
+	console.log('salesforceRecords', salesforceRecords); 
 
 	//const realm = await openRealm(userId, schemas);
 	
@@ -47,25 +46,22 @@ const openRealm = async (userId, records) => {
 
 const prepare = (salesforceRecords) => {
 
-	let records = salesforceRecords['Account'].map(record => {
-		console.log('record', record); 
-		return records; 
+	return salesforceRecords.map(record => {
+
+		return {
+			Id : record.Id, 
+			Name: record.Name, 
+			Type: record.attribute.Name, 
+			LastModifiedDate: record.LastModifiedDate,
+			CreatedDate: record.CreatedDate,
+			Values: getValues(record) //json object 
+		}
+
 	})
-	// return salesforceRecords.map(record => {
-	// 	return {
-	// 		Id : record.Id, 
-	// 		Name: record.Name, 
-	// 		Type: record.attribute.Name, 
-	// 		LastModifiedDate: record.LastModifiedDate,
-	// 		CreatedDate: record.CreatedDate,
-	// 		Values: getValues(record) //json object 
-	// 	}
-	// })
 
 }
 
 const getValues = (record) => {
-	console.log('record', record); 
 	return JSON.stringify(record); 
 }
 
