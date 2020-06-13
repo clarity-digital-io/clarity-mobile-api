@@ -52,7 +52,7 @@ const prepare = (salesforceRecords) => {
 		return {
 			Id : record.Id, 
 			Name: record.Name, 
-			Type: record.attribute.Name, 
+			Type: record.attributes.type, 
 			LastModifiedDate: record.LastModifiedDate,
 			CreatedDate: record.CreatedDate,
 			Values: getValues(record) //json object 
