@@ -95,6 +95,19 @@ export const AnswerSchema = {
 	}
 }
 
+export const sObjectSchema = {
+	name: 'Answer__c',
+	primaryKey: 'Id',
+	properties: {
+		Id: 'string',
+		Name: 'string', 
+		Type: 'string',
+		LastModifiedDate: 'string',
+		CreatedDate: 'string',
+		Values: 'string'
+	}
+}
+
 export const ProfileSchema = {
 	name: 'Profile',
 	primaryKey: 'Id', //userId
@@ -104,6 +117,7 @@ export const ProfileSchema = {
 		access_token: 'string',
 		full_name: 'string',
 		avatar: 'string',
-		last_sync: 'date'
+		last_sync: 'date',
+		sync_status: 'string' //Sync Complete / Requested / In Progress / Sync Failed / Not Started / Request Failed
 	}
 }

@@ -42,3 +42,4 @@ Data Model for License Management (Control Qty of Licenses // Get QTYs from Clar
 -- Clarity_License__c (Limit Controlled by metadata); 
 
 
+worker: node worker.js

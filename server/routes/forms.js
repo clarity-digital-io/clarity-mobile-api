@@ -2,7 +2,7 @@ import express from 'express';
 
 var router = express.Router();
 
-router.post('/', async (req, res) => {
+router.post('/:organizationId', async (req, res) => {
 
 	console.log('open realm here after checking if orgid/company id is valid or api key');
 	console.log('close it up afterwards'); 
