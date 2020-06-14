@@ -9,17 +9,12 @@ var router = express.Router();
 
 router.post('/:userId', async (req, res) => {
 
-	console.log('user', userId); 
-
 	let userId = req.params.userId;
-	console.log('user', userId); 
 	//start worker async = on success start return response
 
 	let records = req.body;
-	console.log('records', records); 
 
 	const salesforceRecords = prepare(records); 
-	console.log('salesforceRecords', salesforceRecords); 
 
 	//const realm = await openRealm(userId, schemas);
 	
@@ -62,8 +57,21 @@ const prepare = (salesforceRecords) => {
 
 }
 
+const exclude = ['Id', 'Name', 'Type', 'LastModifiedDate', 'CreatedDate', 'attributes'];
+
 const getValues = (record) => {
-	return JSON.stringify(record); 
+
+	let sObjectRecord = {};
+
+	for (const property in record) {
+		console.log(`${property}: ${record[property]}`);
+		if(exclude.indexOf(property) == -1) {
+			sObjectRecord[property] = record[property];
+		} 
+	}
+	console.log('sObjectRecord', sObjectRecord); 
+	return JSON.stringify(sObjectRecord); 
+	
 }
 
 export default router;
