@@ -96,7 +96,7 @@ export const AnswerSchema = {
 }
 
 export const sObjectSchema = {
-	name: 'Answer__c',
+	name: 'sObject',
 	primaryKey: 'Id',
 	properties: {
 		Id: 'string',

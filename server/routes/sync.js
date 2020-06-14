@@ -16,12 +16,10 @@ router.post('/:userId', async (req, res) => {
 
 	const salesforceRecords = prepare(records); 
 
-	//const realm = await openRealm(userId, schemas);
+	const realm = await openRealm(userId, salesforceRecords);
 	
-	//const sync = await sync(realm, records); 
-
-	//realm.close(); 	
-
+	const status = await sync(realm, records); 
+	
 	res.status(201).send('Successful syncing of records!');
 	
 });
@@ -37,6 +35,22 @@ const openRealm = async (userId, records) => {
 	} catch (error) {
 		console.log('error', error);
 	}
+
+}
+
+const sync = async (realm, records) => {
+
+	realm.write(() => {
+
+		records.forEach(record => {
+
+			let updateRecord = realm.create('sObject', record, 'all');
+
+		});
+
+	});
+
+	realm.close(); 
 
 }
 
