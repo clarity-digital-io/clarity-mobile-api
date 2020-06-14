@@ -19,7 +19,7 @@ router.post('/:userId', async (req, res) => {
 	const realm = await openRealm(userId, salesforceRecords);
 	
 	const status = await sync(realm, records); 
-	
+
 	res.status(201).send('Successful syncing of records!');
 	
 });
@@ -61,7 +61,7 @@ const prepare = (salesforceRecords) => {
 		return {
 			Id : record.Id, 
 			Name: record.Name, 
-			Type: record.attributes.type, 
+			Type: 'Account', 
 			LastModifiedDate: record.LastModifiedDate,
 			CreatedDate: record.CreatedDate,
 			Values: getValues(record) //json object 
