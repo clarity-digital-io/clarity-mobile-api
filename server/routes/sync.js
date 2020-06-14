@@ -43,7 +43,7 @@ const sync = async (realm, records) => {
 	realm.write(() => {
 
 		records.forEach(record => {
-
+			console.log('record', record); 
 			let updateRecord = realm.create('sObject', record, 'all');
 
 		});
@@ -78,12 +78,10 @@ const getValues = (record) => {
 	let sObjectRecord = {};
 
 	for (const property in record) {
-		console.log(`${property}: ${record[property]}`);
 		if(exclude.indexOf(property) == -1) {
 			sObjectRecord[property] = record[property];
 		} 
 	}
-	console.log('sObjectRecord', sObjectRecord); 
 	return JSON.stringify(sObjectRecord); 
 	
 }
