@@ -16,16 +16,16 @@ router.post('/:userId', async (req, res) => {
 
 	const salesforceRecords = prepare(records); 
 
-	const realm = await openRealm(userId, salesforceRecords);
+	const realm = await openRealm(userId);
 	
-	const status = await sync(realm, records); 
+	const status = await sync(realm, salesforceRecords); 
 
 	res.status(201).send('Successful syncing of records!');
 	
 });
 
 //separate as a helper/service
-const openRealm = async (userId, records) => {
+const openRealm = async (userId) => {
 	
 	try {
 		const adminUser = await Realm.Sync.User.login(SERVER_URL, Realm.Sync.Credentials.nickname('realm-admin', true));
@@ -71,7 +71,7 @@ const prepare = (salesforceRecords) => {
 
 }
 
-const exclude = ['Id', 'Name', 'Type', 'LastModifiedDate', 'CreatedDate', 'attributes'];
+const exclude = ['Id', 'Name', 'LastModifiedDate', 'CreatedDate', 'attributes'];
 
 const getValues = (record) => {
 
