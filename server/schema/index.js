@@ -5,6 +5,7 @@ export const FormSchema = {
     Id: 'string',
 		Name: 'string',
 		Title__c: 'string',
+		Description__c: 'string',
 		Status__c: 'string',
 		Multi_Page__c: {type: 'bool', default: false},
 		Multi_Page_Val__c: {type: 'bool', default: false},
