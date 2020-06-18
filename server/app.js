@@ -1,7 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 
-import activateRouter from './routes/activate';
+import informationRouter from './routes/information';
 import initRouter from './routes/init';
 import registerRouter from './routes/register';
 import formsRouter from './routes/forms';
@@ -13,7 +13,7 @@ let app = express();
 
 app.use(bodyParser.json())
 
-app.use('/activate', activateRouter); 
+app.use('/information', informationRouter); 
 
 app.use('/init', initRouter);
 app.use('/register', registerRouter); 
