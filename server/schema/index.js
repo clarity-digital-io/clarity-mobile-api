@@ -14,6 +14,43 @@ export const FormSchema = {
   },
 };
 
+export const FormConnectionSchema = {
+	name: 'Form_Connection__c',
+	primaryKey: 'Id', 
+	properties: {
+		Id: 'string',
+		Name: 'string',
+		New__c: 'bool',
+		Result_Holder__c: 'string',
+		Salesforce_Object__c: 'string',
+		Type__c: 'string',
+		Form_Connection_Fields__r: 'Form_Connection_Field__c[]'
+	}
+}
+
+export const FormConnectionFieldSchema = {
+	name: 'Form_Connection_Field__c',
+	primaryKey: 'Id', 
+	properties: {
+		Id: 'string',
+		Name: 'string',
+		Form_Connection__c: 'string',
+		Question__c: 'string',
+		Custom_Value__c: 'string',
+		PreFill__c: 'string',
+		Salesforce_Field__c: 'string'
+	}
+}
+
+export const ResponseConnectionSchema = {
+	name: 'Response_Connection__c',
+	primaryKey: 'Id',
+	properties: {
+		Id: 'string',
+		Name: 'string'
+	}
+}
+
 export const QuestionSchema = {
 	name: 'Question__c',
 	primaryKey: 'Id',
