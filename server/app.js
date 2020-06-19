@@ -1,5 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+import path from 'path'; 
 
 import connectRouter from './routes/connect';
 import informationRouter from './routes/information';
@@ -25,7 +26,9 @@ app.use('/forms', formsRouter);
 app.use('/sync', syncRouter);
 
 app.get('/home',function(req,res) {
-  res.sendFile('index.html');
+
+	res.sendFile(path.join(__dirname + '/index.html'));
+
 });
 
 app.listen(PORT, () =>
