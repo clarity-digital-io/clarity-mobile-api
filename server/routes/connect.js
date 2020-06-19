@@ -20,7 +20,7 @@ router.post('/:organizationId', async (req, res) => {
 
 	const { data } = await verifyOrganizationAccess(organizationId, req.params);
 	console.log('data', data); 
-	if(data.access != 'valid') {
+	if(data == null) {
 		return res.status(401).send({ access: false, description: 'No mobile access for Organization.' });
 	} 
 
