@@ -31,11 +31,11 @@ router.post('/:organizationId', async (req, res) => {
 	// const test = await sendToWorker(); 
 
 	console.log('test', data); 
-	const realm = await openRealm(organizationId);
+	// const realm = await openRealm(organizationId);
 	
-	const forms = prepareForms(req.body.forms); 
+	// const forms = prepareForms(req.body.forms); 
 
-	const status = await sync(realm, forms);
+	// const status = await sync(realm, forms);
 
 	startListener(); 
 
