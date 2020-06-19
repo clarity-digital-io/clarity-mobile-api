@@ -24,14 +24,9 @@ app.use('/register', registerRouter);
 app.use('/forms', formsRouter);
 app.use('/sync', syncRouter);
 
-
-var homeRouter = express.Router();
-
-homeRouter.get('/', function(req, res, next) {
-	res.render('index', { title: 'Express' });
- });
-
- app.use('/home', homeRouter);
+app.get('/home',function(req,res) {
+  res.sendFile('index.html');
+});
 
 app.listen(PORT, () =>
 	console.log(`App listening on port ${PORT}!`),
