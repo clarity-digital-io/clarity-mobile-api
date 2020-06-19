@@ -48,7 +48,7 @@ console.log('changeEvent', changeEvent);
 // // Extract the user ID from the virtual path, assuming that we're using
 // // a filter which only subscribes us to updates of user-scoped Realms.
 var matches = changeEvent.path.match("^/([^/]+)/([^/]+)$");
-console.log('matches', matches); 
+console.log('matches', matches, changeEvent.changes); 
 // var realm = changeEvent.realm;
 // var forms = realm.objects('Form__c');
 // var formIndexes = changeEvent.changes.Form__c.insertions;
