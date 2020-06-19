@@ -18,15 +18,16 @@ router.post('/:organizationId', async (req, res) => {
 	
 	let organizationId = req.params.organizationId;
 
-	const { data } = await verifyOrganizationAccess(organizationId, req.params);
+	// const { data } = await verifyOrganizationAccess(organizationId, req.params);
 
-	if(data.access != 'valid') {
-		return res.status(401).send({ access: false, description: 'No mobile access for Organization.' });
-	} 
+	// if(data.access != 'valid') {
+	// 	return res.status(401).send({ access: false, description: 'No mobile access for Organization.' });
+	// } 
 
 	//if access we can start the sync worker
 	//open realm and syncs forms 
 	//start listener for responses 
+	
 	const test = await sendToWorker(); 
 
 	console.log('test', test); 
@@ -227,7 +228,7 @@ const sendToWorker = async () => {
 		'User-Agent': 'Super Agent/0.0.1',
 		'Content-Type': 'application/json'
 	};
-	
+	console.log('sendToWorker'); 
 	try {
 		const response = await axios.post(WORKER_URL, { organizationId: 'organizationId', }, { headers: headers });
 		console.log("Success: Got response from worker: " + response);
