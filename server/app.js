@@ -28,7 +28,6 @@ app.listen(PORT, () =>
 const SERVER_URL = 'https://forms-dev.us1a.cloud.realm.io';
 const REALM_URL = 'realms://forms-dev.us1a.cloud.realm.io';
 
-startListener(); 
 
 const startListener = async () => {
 
@@ -60,3 +59,5 @@ console.log('changeEvent', changeEvent);
 
 // console.log('userId', forms, formIndexes); 
 }
+
+startListener(); 
