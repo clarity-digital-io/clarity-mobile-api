@@ -7,6 +7,7 @@ import initRouter from './routes/init';
 import registerRouter from './routes/register';
 import formsRouter from './routes/forms';
 import syncRouter from './routes/sync';
+import secureRouter from './routes/secure';
 
 const PORT = process.env.PORT || 5000;
 
@@ -14,6 +15,7 @@ let app = express();
 
 app.use(bodyParser.json())
 
+app.use('/secure', secureRouter); 
 
 app.use('/information', informationRouter); 
 app.use('/connect', connectRouter);
