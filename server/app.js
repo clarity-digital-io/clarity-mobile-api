@@ -51,6 +51,10 @@ var matches = changeEvent.path.match("^/([^/]+)/([^/]+)$");
 console.log('matches', matches, changeEvent.changes); 
 console.log(changeEvent.changes.Response__c); 
 
+if(changeEvent.changes.Response__c.hasOwnProperty('oldModifications')) {
+	console.log(changeEvent.changes.Response__c.oldModifications); 
+}
+
 // var realm = changeEvent.realm;
 // var forms = realm.objects('Form__c');
 // var formIndexes = changeEvent.changes.Form__c.insertions;
