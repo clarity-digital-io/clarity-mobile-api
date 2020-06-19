@@ -1,13 +1,11 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 
-import connectRouter from './routes/connect';
 import informationRouter from './routes/information';
-import initRouter from './routes/init';
+import connectRouter from './routes/connect';
 import registerRouter from './routes/register';
 import formsRouter from './routes/forms';
 import syncRouter from './routes/sync';
-import secureRouter from './routes/secure';
 
 const PORT = process.env.PORT || 5000;
 
@@ -15,12 +13,9 @@ let app = express();
 
 app.use(bodyParser.json())
 
-app.use('/secure', secureRouter); 
-
 app.use('/information', informationRouter); 
-app.use('/connect', connectRouter);
 
-app.use('/init', initRouter);
+app.use('/connect', connectRouter);
 app.use('/register', registerRouter); 
 
 app.use('/forms', formsRouter);
