@@ -239,7 +239,7 @@ const sendToWorker = async () => {
 
 }
 
-function sendToWorker(orgId, eventId, recordIds, namespace) {
+function sendToWorker1(orgId, eventId, recordIds, namespace) {
 
 	// Set the headers
 	var headers = {
