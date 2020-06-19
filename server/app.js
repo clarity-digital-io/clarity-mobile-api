@@ -49,6 +49,8 @@ console.log('changeEvent', changeEvent);
 // // a filter which only subscribes us to updates of user-scoped Realms.
 var matches = changeEvent.path.match("^/([^/]+)/([^/]+)$");
 console.log('matches', matches, changeEvent.changes); 
+console.log(changeEvent.changes.Response__c.oldModifications, changeEvent.changes.Response__c.newModifications:); 
+
 // var realm = changeEvent.realm;
 // var forms = realm.objects('Form__c');
 // var formIndexes = changeEvent.changes.Form__c.insertions;
