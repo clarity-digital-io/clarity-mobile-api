@@ -1,6 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 
+import connectRouter from './routes/connect';
 import informationRouter from './routes/information';
 import initRouter from './routes/init';
 import registerRouter from './routes/register';
@@ -13,13 +14,24 @@ let app = express();
 
 app.use(bodyParser.json())
 
+
 app.use('/information', informationRouter); 
+app.use('/connect', connectRouter);
 
 app.use('/init', initRouter);
 app.use('/register', registerRouter); 
 
 app.use('/forms', formsRouter);
 app.use('/sync', syncRouter);
+
+
+var homeRouter = express.Router();
+
+homeRouter.get('/', function(req, res, next) {
+	res.render('index', { title: 'Express' });
+ });
+
+ app.use('/home', homeRouter);
 
 app.listen(PORT, () =>
 	console.log(`App listening on port ${PORT}!`),
