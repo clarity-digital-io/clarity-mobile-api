@@ -27,7 +27,7 @@ app.use('/sync', syncRouter);
 
 app.get('/home',function(req,res) {
 
-	res.sendFile(path.join(__dirname + '/index.html'));
+	res.sendFile(path.join('/public/index.html'));
 
 });
 
