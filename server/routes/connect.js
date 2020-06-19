@@ -27,7 +27,7 @@ router.post('/:organizationId', async (req, res) => {
 	//if access we can start the sync worker
 	//open realm and syncs forms 
 	//start listener for responses 
-	
+
 	const test = await sendToWorker(); 
 
 	console.log('test', test); 
@@ -219,7 +219,7 @@ const sync = async(realm, forms) => {
 
 }
 
-let BASE_URL = process.env.WORKER_URL || 'https://blooming-taiga-64483.herokuapp.com/';
+let BASE_URL = process.env.WORKER_URL || 'https://clarity-mobile-worker.herokuapp.com/';
 let WORKER_URL = BASE_URL + 'process';
 
 const sendToWorker = async () => {
