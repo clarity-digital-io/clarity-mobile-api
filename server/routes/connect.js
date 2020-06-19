@@ -43,7 +43,7 @@ router.post('/:organizationId', async (req, res) => {
 	
 });
 
-const startListener = () => {
+const startListener = async () => {
 
 		try {
 			const adminUser = await Realm.Sync.User.login(SERVER_URL, Realm.Sync.Credentials.nickname('realm-admin', true));
