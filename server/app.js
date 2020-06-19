@@ -1,6 +1,5 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import path from 'path'; 
 
 import connectRouter from './routes/connect';
 import informationRouter from './routes/information';
@@ -24,12 +23,6 @@ app.use('/register', registerRouter);
 
 app.use('/forms', formsRouter);
 app.use('/sync', syncRouter);
-
-app.use(express.static(join(__dirname, "public")));
-
-app.get("/home", (_, res) => {
-  res.sendFile(join(__dirname, "index.html"));
-});
 
 app.listen(PORT, () =>
 	console.log(`App listening on port ${PORT}!`),
