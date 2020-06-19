@@ -25,10 +25,10 @@ app.use('/register', registerRouter);
 app.use('/forms', formsRouter);
 app.use('/sync', syncRouter);
 
-app.get('/home',function(req,res) {
+app.use(express.static(join(__dirname, "public")));
 
-	res.sendFile(path.join(__dirname + '/public/index.html'));
-
+app.get("/home", (_, res) => {
+  res.sendFile(join(__dirname, "index.html"));
 });
 
 app.listen(PORT, () =>
