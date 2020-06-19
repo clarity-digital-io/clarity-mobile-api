@@ -28,7 +28,9 @@ app.listen(PORT, () =>
 const SERVER_URL = 'https://forms-dev.us1a.cloud.realm.io';
 const REALM_URL = 'realms://forms-dev.us1a.cloud.realm.io';
 
-
+//the startlistener will stsart on app run 
+//should query connected orgs and the server url and realm url and start a listener for that
+//sandboxes will share forms-dev
 const startListener = async () => {
 
 	try {
@@ -45,8 +47,8 @@ var handleChange = async function (changeEvent) {
 console.log('changeEvent', changeEvent);
 // // Extract the user ID from the virtual path, assuming that we're using
 // // a filter which only subscribes us to updates of user-scoped Realms.
-// var matches = changeEvent.path.match("^/([^/]+)/([^/]+)$");
-// console.log('matches', matches); 
+var matches = changeEvent.path.match("^/([^/]+)/([^/]+)$");
+console.log('matches', matches); 
 // var realm = changeEvent.realm;
 // var forms = realm.objects('Form__c');
 // var formIndexes = changeEvent.changes.Form__c.insertions;
