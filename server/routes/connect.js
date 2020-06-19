@@ -18,28 +18,61 @@ router.post('/:organizationId', async (req, res) => {
 	
 	let organizationId = req.params.organizationId;
 
-	// const { data } = await verifyOrganizationAccess(organizationId, req.params);
+	const { data } = await verifyOrganizationAccess(organizationId, req.params);
 
-	// if(data.access != 'valid') {
-	// 	return res.status(401).send({ access: false, description: 'No mobile access for Organization.' });
-	// } 
+	if(data.access != 'valid') {
+		return res.status(401).send({ access: false, description: 'No mobile access for Organization.' });
+	} 
 
 	//if access we can start the sync worker
 	//open realm and syncs forms 
 	//start listener for responses 
 
-	const test = await sendToWorker(); 
+	// const test = await sendToWorker(); 
 
-	console.log('test', test); 
-	// const realm = await openRealm(data.organizationId);
+	console.log('test', data); 
+	const realm = await openRealm(organizationId);
 	
-	// const forms = prepareForms(req.body.forms); 
+	const forms = prepareForms(req.body.forms); 
 
-	// const status = await sync(realm, forms);
+	const status = await sync(realm, forms);
+
+	startListener(); 
 
 	res.status(201).send('Syncing Forms!');
 	
 });
+
+const startListener = () => {
+
+		try {
+			const adminUser = await Realm.Sync.User.login(SERVER_URL, Realm.Sync.Credentials.nickname('realm-admin', true));
+			const config = { serverUrl: REALM_URL, adminUser: adminUser, filterRegex: '/.*/' }
+			Realm.Sync.addListener(config, 'change', handleChange)
+		} catch (error) {
+			console.log('error', error);
+		}
+
+}
+
+var handleChange = async function (changeEvent) {
+	console.log('changeEvent', changeEvent);
+  // // Extract the user ID from the virtual path, assuming that we're using
+  // // a filter which only subscribes us to updates of user-scoped Realms.
+	// var matches = changeEvent.path.match("^/([^/]+)/([^/]+)$");
+	// console.log('matches', matches); 
+	// var realm = changeEvent.realm;
+  // var forms = realm.objects('Form__c');
+  // var formIndexes = changeEvent.changes.Form__c.insertions;
+
+	// for (let formIndex of formIndexes) {
+	// 	var form = formIndexes[formIndex];
+
+	// 	console.log('formIndex', formIndex, form); 
+	// }
+	
+	// console.log('userId', forms, formIndexes); 
+}
 
 const verifyOrganizationAccess = async (organizationId, params) => {
 
