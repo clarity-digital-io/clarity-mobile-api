@@ -42,7 +42,7 @@ router.post('/:organizationId', async (req, res) => {
 	// const status = await sync(realm, forms);
 
 
-	res.status(201).send('Syncing Forms!');
+	//res.status(201).send('Syncing Forms!');
 	
 });
 
