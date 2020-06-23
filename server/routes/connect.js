@@ -16,28 +16,7 @@ router.post('/:organizationId', async (req, res) => {
 
 	const { data } = await verifyOrganizationAccess(organizationId, req.params);
 
-	connectController(req, res, data); 
-
-	// console.log('data', data); 
-	// if(data == null) {
-	// 	return res.status(401).send({ access: false, description: 'No mobile access for Organization.' });
-	// } 
-
-	//if access we can start the sync worker
-	//open realm and syncs forms 
-	//start listener for responses 
-
-	// const test = await sendToWorker(); 
-
-	//console.log('test', data); 
-	// const realm = await openRealm(organizationId);
-	
-	// const forms = prepareForms(req.body.forms); 
-
-	// const status = await sync(realm, forms);
-
-
-	//res.status(201).send('Syncing Forms!');
+	connectController(req, res, data, organizationId); 
 	
 });
 
