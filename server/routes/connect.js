@@ -2,6 +2,7 @@ import express from 'express';
 import axios from 'axios';
 import Realm from 'realm';
 import { FormSchema, QuestionSchema, QuestionOptionSchema, QuestionCriteriaSchema } from '../schema'; 
+import { connectController } from '../controllers/connectController';
 
 const SERVER_URL = 'https://forms-dev.us1a.cloud.realm.io';
 const REALM_URL = 'realms://forms-dev.us1a.cloud.realm.io';
