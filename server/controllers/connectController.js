@@ -10,7 +10,7 @@ export const connectController = async (req, res) => {
 	try {
 		let workQueue = new Queue('connect', {redis: {port: PORT, host: HOST, password: PASSWORD }}); 
 		console.log('workQueue', workQueue); 
-		let job = await workQueue.add('test');
+		let job = await workQueue.add({ test: 'test' });
 		console.log('job', job); 
 
 		//return res.status(201).send({ id: job.id });		
