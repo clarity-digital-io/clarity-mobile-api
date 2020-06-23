@@ -20,7 +20,7 @@ router.post('/:organizationId', async (req, res) => {
 	let organizationId = req.params.organizationId;
 
 	const { data } = await verifyOrganizationAccess(organizationId, req.params);
-
+	console.log('connect controller'); 
 	connectController(req, res); 
 
 	// console.log('data', data); 
