@@ -10,6 +10,7 @@ export const connectController = async (req, res, organizationId) => {
 	try {
 		let workQueue = new Queue('connect', {redis: {port: PORT, host: HOST, password: PASSWORD }}); 
 		let job = await workQueue.add({ forms: req.body.forms, organizationId: organizationId });
+		workQueue.close(); 
 		res.status(201).send({ id: job.id });		
 	} catch (error) {
 		res.status(404).send({ description: error });
