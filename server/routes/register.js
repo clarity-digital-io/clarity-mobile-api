@@ -10,6 +10,7 @@ var router = express.Router();
 router.post('/:organizationId', async (req, res) => {
 
 	let organizationId = req.params.organizationId;
+	console.log('organizationId', req.body); 
 
 	const userRealms = await openRealms(organizationId, req.body);
 
@@ -25,14 +26,14 @@ const openRealms = async (organizationId, users) => {
 	try {
 		const adminUser = await Realm.Sync.User.login(SERVER_URL, Realm.Sync.Credentials.nickname('realm-admin', true));
 
-		for(let user in users) {
+		users.forEach(user => {
 			const config = { sync: { user: adminUser, url: REALM_URL + `/salesforce-sandbox_${user}/user`, fullSynchronization: true, validate_ssl: false },  schema: [ResponseSchema] };
 			const realm = await Realm.open(config);	
 			await adminUser.applyPermissions({ userId: `salesforce-sandbox_${user}` }, `/salesforce-sandbox_${user}/user`, 'admin');
 			await adminUser.applyPermissions({ userId: `salesforce-sandbox_${user}` }, `/${organizationId}/forms`, 'read');
 			userRealms.push(user);
 			realm.close(); 	
-		}
+		});
 	
 	} catch (error) {
 		console.log('error', error);
