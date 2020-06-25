@@ -19,8 +19,9 @@ router.post('/:organizationId', async (req, res) => {
 });
 
 //separate as a helper/service
+//move to worker queue
 const openRealms = async (organizationId, users) => {
-	console.log('users', users); 
+
 	let userRealms = [];
 	
 	try {
@@ -29,7 +30,8 @@ const openRealms = async (organizationId, users) => {
 
 		for (let index = 0; index < users.length; index++) {
 			let user = users[index];
-			const config = { sync: { user: adminUser, url: REALM_URL + `/salesforce-sandbox_${user}/user`, fullSynchronization: true, validate_ssl: false },  schema: [ResponseSchema] };
+			console.log('user', user); 
+			const config = { sync: { user: adminUser, url: REALM_URL + `/salesforce-sandbox_${user}/user`, fullSynchronization: true, validate_ssl: false },  schema: [ResponseSchema, AnswerSchema] };
 			const realm = await Realm.open(config);	
 			await adminUser.applyPermissions({ userId: `salesforce-sandbox_${user}` }, `/salesforce-sandbox_${user}/user`, 'admin');
 			await adminUser.applyPermissions({ userId: `salesforce-sandbox_${user}` }, `/${organizationId}/forms`, 'read');

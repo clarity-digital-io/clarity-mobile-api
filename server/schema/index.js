@@ -114,7 +114,8 @@ export const ResponseSchema = {
 		Status__c: 'string',
 		Submitted_Date__c: 'data?', 
 		UUID__c: 'string',
-		Form__c: 'string'
+		Form__c: 'string',
+		Answers__r: 'Answer__c[]',
   },
 };
 
