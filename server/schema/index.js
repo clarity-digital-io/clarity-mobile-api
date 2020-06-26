@@ -128,7 +128,7 @@ export const AnswerSchema = {
 		Response: 'string',
 		ContentDocument: 'string',
 		ContentVersion: 'string',
-		DateAnswer: 'string',
+		Date_Answer: 'string',
 		Record: 'string'
 	}
 }
