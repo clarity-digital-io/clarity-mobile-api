@@ -115,7 +115,8 @@ export const ResponseSchema = {
 		Submitted_Date: 'data?', 
 		UUID: 'string',
 		Form: 'string',
-		OwnerId: 'string'
+		OwnerId: 'string',
+		Answers: 'Answer[]'
   },
 };
 
