@@ -1,49 +1,49 @@
 export const FormSchema = {
-	name: 'Form__c',
+	name: 'Form',
 	primaryKey: 'Id',
   properties: {
     Id: 'string',
 		Name: 'string',
-		Title__c: 'string',
-		Description__c: 'string',
-		Status__c: 'string',
-		Multi_Page__c: {type: 'bool', default: false},
-		Multi_Page_Val__c: {type: 'bool', default: false},
-		Multi_Page_Info__c: {type: 'string', default: ''},
-		Questions__r: 'Question__c[]'
+		Title: 'string',
+		Description: 'string',
+		Status: 'string',
+		Multi_Page: {type: 'bool', default: false},
+		Multi_Page_Val: {type: 'bool', default: false},
+		Multi_Page_Info: {type: 'string', default: ''},
+		Questions: 'Question[]'
   },
 };
 
 export const FormConnectionSchema = {
-	name: 'Form_Connection__c',
+	name: 'Form_Connection',
 	primaryKey: 'Id', 
 	properties: {
 		Id: 'string',
 		Name: 'string',
-		New__c: 'bool',
-		Result_Holder__c: 'string',
-		Salesforce_Object__c: 'string',
-		Type__c: 'string',
-		Form_Connection_Fields__r: 'Form_Connection_Field__c[]'
+		New: 'bool',
+		Result_Holder: 'string',
+		Salesforce_Object: 'string',
+		Type: 'string',
+		Form_Connection_Fields: 'Form_Connection_Field[]'
 	}
 }
 
 export const FormConnectionFieldSchema = {
-	name: 'Form_Connection_Field__c',
+	name: 'Form_Connection_Field',
 	primaryKey: 'Id', 
 	properties: {
 		Id: 'string',
 		Name: 'string',
-		Form_Connection__c: 'string',
-		Question__c: 'string',
-		Custom_Value__c: 'string',
-		PreFill__c: 'string',
-		Salesforce_Field__c: 'string'
+		Form_Connection: 'string',
+		Question: 'string',
+		Custom_Value: 'string',
+		PreFill: 'string',
+		Salesforce_Field: 'string'
 	}
 }
 
 export const ResponseConnectionSchema = {
-	name: 'Response_Connection__c',
+	name: 'Response_Connection',
 	primaryKey: 'Id',
 	properties: {
 		Id: 'string',
@@ -52,85 +52,84 @@ export const ResponseConnectionSchema = {
 }
 
 export const QuestionSchema = {
-	name: 'Question__c',
+	name: 'Question',
 	primaryKey: 'Id',
   properties: {
 		Id: 'string',
 		Name: 'string',
-    Form__c: 'string',
-		Title__c: 'string',
-		Type__c: 'string',
-    Order__c: {type: 'int', default: 0},
-    Lookup__c: 'data?',
-		Max_Length__c: 'int',
-		Max_Range__c: 'int',
-		Min_Range__c: 'int',
-		Page__c: 'int',
-		Required__c: 'bool',
-		Salesforce_Field__c: 'data?',
-		Salesforce_Object__c: 'data?',
-		Logic__c: {type: 'string', default: ''},
-		FreeText_Type__c: {type: 'string', default: ''},
-		Record_Group__c: 'data?',
-		Prefill_Type__c: 'data?',
-		Question_Options__r: 'Question_Option__c[]',
-		Question_Criteria__r: 'Question_Criteria__c[]'
+    Form: 'string',
+		Title: 'string',
+		Type: 'string',
+    Order: {type: 'int', default: 0},
+    Lookup: 'data?',
+		Max_Length: 'int',
+		Max_Range: 'int',
+		Min_Range: 'int',
+		Page: 'int',
+		Required: 'bool',
+		Salesforce_Field: 'data?',
+		Salesforce_Object: 'data?',
+		Logic: {type: 'string', default: ''},
+		FreeText_Type: {type: 'string', default: ''},
+		Record_Group: 'data?',
+		Prefill_Type: 'data?',
+		Question_Options: 'Question_Option[]',
+		Question_Criteria: 'Question_Criteria[]'
 	}
 };
 
 export const QuestionOptionSchema = {
-	name: 'Question_Option__c',
+	name: 'Question_Option',
 	primaryKey: 'Id',
   properties: {
 		Id: 'string',
 		Name: 'string',
-		Question__c: 'string',
-		Label__c: 'string'
+		Question: 'string',
+		Label: 'string'
   }
 };
 
 export const QuestionCriteriaSchema = {
-	name: 'Question_Criteria__c',
+	name: 'Question_Criteria',
 	primaryKey: 'Id',
   properties: {
 		Id: 'string',
 		Name: 'string',
-		Question__c: 'string',
-		Field__c: 'string', 
-		Field_Type__c: 'string',
-		Operator__c: 'string',
-		Type__c: 'string',
-		Value__c: 'string'
+		Question: 'string',
+		Field: 'string', 
+		Field_Type: 'string',
+		Operator: 'string',
+		Type: 'string',
+		Value: 'string'
   }
 };
 
 export const ResponseSchema = {
-	name: 'Response__c',
+	name: 'Response',
 	primaryKey: 'Id',
   properties: {
 		Id: 'string',
 		Name: 'string', 
-		Completion__c: 'bool',
-		Status__c: 'string',
-		Submitted_Date__c: 'data?', 
-		UUID__c: 'string',
-		Form__c: 'string',
-		Answers__r: 'Answer__c[]',
+		Completion: 'bool',
+		Status: 'string',
+		Submitted_Date: 'data?', 
+		UUID: 'string',
+		Form: 'string'
   },
 };
 
 export const AnswerSchema = {
-	name: 'Answer__c',
+	name: 'Answer',
 	primaryKey: 'Id',
 	properties: {
 		Id: 'string',
 		Name: 'string', 
-		Answer__c: 'string',
-		Response__c: 'string',
-		ContentDocument__c: 'string',
-		ContentVersion__c: 'string',
-		Date_Answer__c: 'string',
-		Record__c: 'string'
+		Answer: 'string',
+		Response: 'string',
+		ContentDocument: 'string',
+		ContentVersion: 'string',
+		DateAnswer: 'string',
+		Record: 'string'
 	}
 }
 
@@ -153,10 +152,9 @@ export const ProfileSchema = {
 	properties: {
 		id: 'string',
 		email: 'string', 
-		access_token: 'string',
 		full_name: 'string',
 		avatar: 'string',
 		last_sync: 'date',
-		sync_status: 'string' //Sync Complete / Requested / In Progress / Sync Failed / Not Started / Request Failed
+		sync_status: 'string' //Complete / Requested / In Progress / Failed / Not Started
 	}
 }

@@ -11,7 +11,7 @@ router.post('/:organizationId', async (req, res) => {
 
 	realm.write(() => {
 
-		const	form = realm.create('Form__c', preparedForm, 'modified');
+		const	form = realm.create('Form', preparedForm, 'modified');
 
 	});
 
@@ -23,7 +23,7 @@ const parseForm = (body) => {
 	const form = {
 		Id: body.Id,
 		Name: body.Name ? body.Name : '',
-		Title__c: body.forms__Title__c ? body.forms__Title__c : '',
+		Title: body.forms__Title__c ? body.forms__Title__c : '',
 
 	};
 

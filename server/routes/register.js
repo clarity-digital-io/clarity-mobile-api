@@ -10,7 +10,6 @@ var router = express.Router();
 router.post('/:organizationId', async (req, res) => {
 
 	let organizationId = req.params.organizationId;
-	console.log('organizationId', req.body); 
 
 	const userRealms = await openRealms(organizationId, req.body);
 
