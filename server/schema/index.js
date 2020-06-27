@@ -106,14 +106,14 @@ export const QuestionCriteriaSchema = {
 
 export const ResponseSchema = {
 	name: 'Response',
-	primaryKey: 'Id',
+	primaryKey: 'UUID',
   properties: {
+		UUID: 'string',
 		Id: 'string',
 		Name: 'string', 
 		Completion: 'bool',
 		Status: 'string',
-		Submitted_Date: 'data?', 
-		UUID: 'string',
+		Submitted_Date: 'data?',
 		Form: 'string',
 		OwnerId: 'string',
 		Answers: 'Answer[]'
@@ -122,8 +122,9 @@ export const ResponseSchema = {
 
 export const AnswerSchema = {
 	name: 'Answer',
-	primaryKey: 'Id',
+	primaryKey: 'UUID',
 	properties: {
+		UUID: 'string',
 		Id: 'string',
 		Name: 'string', 
 		Answer: 'string',
