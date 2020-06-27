@@ -16,43 +16,43 @@ router.post('/:userId', async (req, res) => {
 
 	const salesforceRecords = prepare(records); 
 
-	const realm = await openRealm(userId);
+	// const realm = await openRealm(userId);
 	
-	const status = await sync(realm, salesforceRecords); 
+	// const status = await sync(realm, salesforceRecords); 
 
 	res.status(201).send('Successful syncing of records!');
 	
 });
 
 //separate as a helper/service
-const openRealm = async (userId) => {
+// const openRealm = async (userId) => {
 	
-	try {
-		const adminUser = await Realm.Sync.User.login(SERVER_URL, Realm.Sync.Credentials.nickname('realm-admin', true));
-		const config = { sync: { user: adminUser, url: REALM_URL + `/salesforce-sandbox_${userId}/user`, fullSynchronization: true, validate_ssl: false },  schema: [sObjectSchema] };
-		const realm = await Realm.open(config);	
-		return realm;
-	} catch (error) {
-		console.log('error', error);
-	}
+// 	try {
+// 		const adminUser = await Realm.Sync.User.login(SERVER_URL, Realm.Sync.Credentials.nickname('realm-admin', true));
+// 		const config = { sync: { user: adminUser, url: REALM_URL + `/salesforce-sandbox_${userId}/user`, fullSynchronization: true, validate_ssl: false },  schema: [sObjectSchema] };
+// 		const realm = await Realm.open(config);	
+// 		return realm;
+// 	} catch (error) {
+// 		console.log('error', error);
+// 	}
 
-}
+// }
 
-const sync = async (realm, records) => {
+// const sync = async (realm, records) => {
 
-	realm.write(() => {
+// 	realm.write(() => {
 
-		records.forEach(record => {
-			console.log('record', record); 
-			let updateRecord = realm.create('sObject', record, 'all');
+// 		records.forEach(record => {
+// 			console.log('record', record); 
+// 			let updateRecord = realm.create('sObject', record, 'all');
 
-		});
+// 		});
 
-	});
+// 	});
 
-	realm.close(); 
+// 	realm.close(); 
 
-}
+// }
 
 const prepare = (salesforceRecords) => {
 
