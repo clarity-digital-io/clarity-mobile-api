@@ -5,7 +5,7 @@ let HOST = 'ec2-52-202-160-22.compute-1.amazonaws.com';
 let PASSWORD = 'p2be04e53cb71f4970daa5e90bc1f15f0c2086fd2850609eef7c057babf2051aa';
 // Specify Redis connection using object
 
-export const regsiterController = async (req, res, organizationId) => {
+export const registerController = async (req, res, organizationId) => {
 
 	try {
 		let workQueue = new Queue('register', {redis: {port: PORT, host: HOST, password: PASSWORD }}); 
