@@ -11,3 +11,4 @@ router.post('/:organizationId', async (req, res) => {
 	
 });
 
+export default router;
