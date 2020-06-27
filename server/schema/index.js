@@ -132,7 +132,8 @@ export const AnswerSchema = {
 		ContentDocument: 'string',
 		ContentVersion: 'string',
 		Date_Answer: 'string',
-		Record: 'string'
+		Record: 'string',
+		Question: 'string'
 	}
 }
 
