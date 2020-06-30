@@ -6,7 +6,7 @@ let PASSWORD = 'p2be04e53cb71f4970daa5e90bc1f15f0c2086fd2850609eef7c057babf2051a
 // Specify Redis connection using object
 
 export const syncController = async (req, res, userId) => {
-
+	console.log('userId', userId); 
 	try {
 		let workQueue = new Queue('user-sf-sync', {redis: {port: PORT, host: HOST, password: PASSWORD }}); 
 		let job = await workQueue.add({ sobjects: req.body, userId: userId });
