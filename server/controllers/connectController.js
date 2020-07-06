@@ -13,6 +13,7 @@ export const connectController = async (req, res, organizationId) => {
 		workQueue.close(); 
 		res.status(201).send({ id: job.id });		
 	} catch (error) {
+		console.log('error', error);
 		res.status(404).send({ description: error });
 	}
 
