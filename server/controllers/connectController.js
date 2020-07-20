@@ -6,10 +6,10 @@ let PASSWORD = 'p2be04e53cb71f4970daa5e90bc1f15f0c2086fd2850609eef7c057babf2051a
 // Specify Redis connection using object
 
 export const connectController = async (req, res, organizationId) => {
-
+	console.log('req.body.groups', req.body.groups);
 	try {
 		let workQueue = new Queue('connect', {redis: {port: PORT, host: HOST, password: PASSWORD }}); 
-		let job = await workQueue.add({ forms: req.body.forms, organizationId: organizationId });
+		let job = await workQueue.add({ groups: req.body.groups, forms: req.body.forms, organizationId: organizationId });
 		workQueue.close(); 
 		res.status(201).send({ id: job.id });		
 	} catch (error) {
@@ -18,3 +18,4 @@ export const connectController = async (req, res, organizationId) => {
 	}
 
 }
+

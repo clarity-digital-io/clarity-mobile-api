@@ -43,3 +43,6 @@ Data Model for License Management (Control Qty of Licenses // Get QTYs from Clar
 
 
 worker: node worker.js
+$ heroku redis:cli -a clarity-mobile-api --confirm clarity-mobile-api
+
+heroku redis:cli:timeout redis-parallel-70513 --seconds 60
