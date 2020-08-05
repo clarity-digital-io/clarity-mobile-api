@@ -6,7 +6,7 @@ let PASSWORD = 'pa52ef8b5d034514d7e08a40ae7be9213d85032d1255a43b6393b948832e172c
 // Specify Redis connection using object
 
 export const registerController = async (req, res, organizationId) => {
-
+	
 	try {
 		let workQueue = new Queue('register', {redis: {port: PORT, host: HOST, password: PASSWORD }}); 
 		let job = await workQueue.add({ users: req.body, organizationId: organizationId });

@@ -5,7 +5,7 @@ let HOST = 'ec2-54-198-67-0.compute-1.amazonaws.com';
 let PASSWORD = 'pa52ef8b5d034514d7e08a40ae7be9213d85032d1255a43b6393b948832e172cd';
 // Specify Redis connection using object
 
-export const connectController = async (req, res, organizationId) => {
+export const formsController = async (req, res, organizationId) => {
 
 	try {
 		let workQueue = new Queue('forms', {redis: {port: PORT, host: HOST, password: PASSWORD }}); 

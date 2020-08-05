@@ -1,4 +1,5 @@
 import express from 'express';
+import { formsController } from '../controllers/formsController';
 
 var router = express.Router();
 
@@ -6,7 +7,7 @@ router.post('/:organizationId', async (req, res) => {
 
 	let organizationId = req.params.organizationId;
 
-	formController(req, res, organizationId); 
+	formsController(req, res, organizationId); 
 
 });
 
