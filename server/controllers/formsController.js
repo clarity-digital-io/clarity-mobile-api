@@ -9,7 +9,7 @@ export const formsController = async (req, res, organizationId) => {
 
 	try {
 		let workQueue = new Queue('forms', {redis: {port: PORT, host: HOST, password: PASSWORD }}); 
-		let job = await workQueue.add({ forms: req.body.forms, organizationId: organizationId });
+		let job = await workQueue.add({ picklists: req.body.picklists, forms: req.body.forms, organizationId: organizationId });
 		workQueue.close(); 
 		res.status(201).send({ id: job.id });		
 	} catch (error) {
